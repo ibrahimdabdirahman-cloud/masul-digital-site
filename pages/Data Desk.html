@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Masul Data Desk — AI Document Extraction &amp; Admin Cleanup</title>
+<meta name="description" content="Turn menus, invoices, receipts, forms, PDFs and WhatsApp messages into clean spreadsheets, trackers and reports for local businesses." />
+<link rel="icon" href="../assets/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body data-theme="light" data-accent="teal">
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="nav-logo" aria-label="Masul Digital home">
+      <span class="nav-mark" aria-hidden="true">
+        <!-- inline mark so it picks up currentColor effects when needed -->
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none">
+            <path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255" stroke="var(--accent)" stroke-width="22"/>
+            <path d="M 116,255 Q 116,138 200,138 Q 284,138 284,255" stroke="var(--accent)" stroke-width="17" opacity="0.78"/>
+            <path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke="var(--accent)" stroke-width="13" opacity="0.55"/>
+            <line x1="62" y1="255" x2="338" y2="255" stroke="var(--accent)" stroke-width="20" stroke-linecap="round"/>
+            <line x1="116" y1="255" x2="116" y2="282" stroke="var(--accent)" stroke-width="13" stroke-linecap="round"/>
+            <line x1="200" y1="255" x2="200" y2="292" stroke="var(--accent)" stroke-width="13" stroke-linecap="round"/>
+            <line x1="284" y1="255" x2="284" y2="282" stroke="var(--accent)" stroke-width="13" stroke-linecap="round"/>
+          </g>
+          <circle cx="200" cy="255" r="11" fill="var(--accent)"/>
+        </svg>
+      </span>
+      <span class="nav-wordmark">MASUL DIGITAL<span class="sub">DIGITAL SERVICES</span></span>
+    </a>
+    <div class="nav-links" role="navigation">
+      <a href="../pages/Services.html">Services</a>
+      <a href="../pages/Falcon%20AI.html">Falcon AI</a>
+      <a href="../pages/Data%20Desk.html" aria-current="page">Data Desk</a>
+      <a href="../pages/Pricing.html">Pricing</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="../index.html#contact" class="btn btn-primary"><span class="cta-long">Free digital check</span><span class="cta-short">Free check</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <button class="nav-burger" id="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mob">
+    <a href="../pages/Services.html" data-mob-link>Services</a>
+    <a href="../pages/Falcon%20AI.html" data-mob-link>Falcon AI</a>
+    <a href="../pages/Data%20Desk.html" data-mob-link>Data Desk</a>
+    <a href="../pages/Pricing.html" data-mob-link>Pricing</a>
+    <a href="../index.html#contact" data-mob-link>Contact</a>
+    <a href="../index.html#contact" data-mob-link class="btn btn-primary">Free digital check</a>
+  </div>
+</nav><!-- ────────────── MASUL DATA DESK (flagship service) ────────────── -->
+<section class="section dd-band" id="datadesk" data-screen-label="Masul Data Desk">
+  <span class="dd-bg-mark" aria-hidden="true">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="22"><path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255"/><path d="M 116,255 Q 116,138 200,138 Q 284,138 284,255" stroke-width="17" opacity="0.78"/><path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke-width="13" opacity="0.55"/><line x1="62" y1="255" x2="338" y2="255" stroke-width="20" stroke-linecap="round"/></g></svg>
+  </span>
+
+  <div class="wrap">
+    <!-- HEADER + TRANSFORMATION VISUAL -->
+    <div class="dd-top">
+      <div class="dd-intro">
+        <span class="dd-seal"><span class="pip"></span> A service by Masul Digital</span>
+        <div class="eyebrow">Masul Data Desk</div>
+        <h2>Turn messy documents into <em>clean business data.</em></h2>
+        <p class="dd-lede">
+          Send us menus, invoices, forms, receipts, PDFs or WhatsApp messages. Our AI extracts the important fields and a human reviews every result — so you get clean spreadsheets, customer trackers and reports your business can actually use.
+        </p>
+        <div class="dd-cta">
+          <a href="https://wa.me/447806949207?text=Hi%2C%20I%27d%20like%20to%20send%20a%20sample%20document%20to%20Masul%20Data%20Desk" class="btn btn-primary" target="_blank" rel="noopener">
+            Send a free sample
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#dd-clean" class="btn btn-ghost">See what we clean</a>
+        </div>
+        <div class="dd-trustline">
+          <b>Menus</b> · <b>Invoices</b> · <b>WhatsApp messages</b> · <b>Forms</b> · <b>PDFs</b> · Human reviewed
+        </div>
+      </div>
+
+      <div class="dd-visual" aria-hidden="true">
+        <!-- messy inputs -->
+        <div class="dd-input photo">
+          <div class="dd-ph"><span>menu photo</span></div>
+          <div class="fn">specials_board.jpg</div>
+        </div>
+        <div class="dd-input wa">
+          <div class="wa-top">
+            <span class="wa-av"><svg viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg></span>
+            <span class="wa-name">Customer · WhatsApp</span>
+          </div>
+          <div class="dd-wa-bubble">Hi can I book a cut Tue 2pm? — Marcus</div>
+          <div class="dd-wa-bubble">2 boxes delivered, £148 inc VAT 🧾</div>
+        </div>
+
+        <!-- clean output -->
+        <div class="dd-sheet">
+          <div class="dd-sheet-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="file">expenses_march.xlsx</span>
+            <span class="rev">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Reviewed
+            </span>
+          </div>
+          <table>
+            <thead>
+              <tr><th>Supplier</th><th>Date</th><th class="r">VAT</th><th class="r">Total</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="sup">Bidfood</td><td class="num">04 Mar</td><td class="num r">£18.40</td><td class="num r">£110.40</td></tr>
+              <tr><td class="sup">Brakes</td><td class="num">09 Mar</td><td class="num r">£24.66</td><td class="num r">£147.96</td></tr>
+              <tr><td class="sup">Booker</td><td class="num">15 Mar</td><td class="num r">£9.20</td><td class="num r">£55.20</td></tr>
+              <tr><td class="sup">Lyreco</td><td class="num">22 Mar</td><td class="num r">£6.14</td><td class="num r">£36.84</td></tr>
+              <tr class="tot"><td>Total</td><td></td><td class="num r">£58.40</td><td class="num r">£350.40</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <span class="dd-extract">
+          <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+          AI extracted
+        </span>
+      </div>
+    </div>
+
+    <!-- WHAT WE CLEAN -->
+    <div id="dd-clean" class="dd-block-head">
+      <div class="eyebrow">What we accept</div>
+      <h3>Send us anything messy.</h3>
+      <p>If it contains business information, we can extract it. You don't need to prepare, format or clean it first.</p>
+    </div>
+    <div class="dd-chips">
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M5 2v20"/><path d="M19 2v20"/><path d="M19 8c0-3-1.5-6-1.5-6"/><path d="M16 8h6"/></svg></span><span>Menus</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14v18l-3-2-3 2-3-2-3 2V3z"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/></svg></span><span>Invoices</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1.5L8 22l2-1.5L12 22l2-1.5L16 22l2-1.5L20 22V2l-2 1.5L16 2l-2 1.5L12 2l-2 1.5L8 2 6 3.5 4 2z"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="14" y2="13"/></svg></span><span>Receipts</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><span>WhatsApp messages</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span>Booking requests</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 17.2V4z"/><line x1="8" y1="9" x2="16" y2="9"/></svg></span><span>Customer enquiries</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span><span>Paper forms</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15h6"/><path d="M9 12h2"/></svg></span><span>PDFs</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="15" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 5l1.5-2h5L16 5"/></svg></span><span>Screenshots</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span><span>Old spreadsheets</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h12"/><circle cx="19" cy="18" r="2"/></svg></span><span>Price lists</span></div>
+      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v3h6V3"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="12" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="12" y1="15" x2="16" y2="15"/></svg></span><span>Attendance sheets</span></div>
+    </div>
+
+    <!-- FIVE DESKS -->
+    <div class="dd-block-head">
+      <div class="eyebrow">Our desks</div>
+      <h3>Five specialist desks. One clean result.</h3>
+      <p>Each desk handles a specific type of document or message. You choose what to send — we handle the rest.</p>
+    </div>
+    <div class="dd-desks">
+      <article class="dd-desk d1">
+        <span class="dk-num">01</span>
+        <span class="dk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v20"/><path d="M3 2v7a2 2 0 0 0 4 0V2"/><path d="M19 2c-1.5 1-2 3-2 6h4c0-3-.5-5-2-6z"/><path d="M19 8v14"/></svg></span>
+        <h4>Menu Desk</h4>
+        <p>Digitise old menus, PDFs, screenshots and delivery-app listings into clean, editable menu data — categories, items, prices and allergens. Ready to drop straight into our QR Menu setup.</p>
+        <div class="dk-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><b>Editable menu spreadsheet</b> — ready for QR setup</span></div>
+      </article>
+      <article class="dd-desk d2">
+        <span class="dk-num">02</span>
+        <span class="dk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14v18l-3-2-3 2-3-2-3 2V3z"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/></svg></span>
+        <h4>Invoice Desk</h4>
+        <p>Extract supplier names, dates, invoice numbers, VAT, totals and line items from any invoice, receipt or email into a clean monthly expense tracker.</p>
+        <div class="dk-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><b>Google Sheet / Excel</b> expense tracker</span></div>
+      </article>
+      <article class="dd-desk d3">
+        <span class="dk-num">03</span>
+        <span class="dk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+        <h4>Lead Desk</h4>
+        <p>Turn WhatsApp, Instagram and email enquiries into a simple lead tracker showing customer name, service, date, time, status and follow-up notes.</p>
+        <div class="dk-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><b>CRM-style</b> lead &amp; booking tracker</span></div>
+      </article>
+      <article class="dd-desk d4">
+        <span class="dk-num">04</span>
+        <span class="dk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></span>
+        <h4>Forms Desk</h4>
+        <p>Convert forms, applications, intake sheets and attendance records into clean spreadsheets and reports. Ideal for clinics, NGOs and training centres.</p>
+        <div class="dk-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><b>Structured</b> spreadsheet / database</span></div>
+      </article>
+      <article class="dd-desk d5">
+        <span class="dk-num">05</span>
+        <span class="dk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v6l9 4 9-4V7"/><path d="M3 13v4l9 4 9-4v-4"/></svg></span>
+        <h4>Cleanup Desk</h4>
+        <p>Clean messy spreadsheets, old customer lists, price lists and admin files into organised, searchable, usable business records.</p>
+        <div class="dk-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><b>Organised</b> &amp; searchable records</span></div>
+      </article>
+    </div>
+
+    <!-- PRICING RAIL + FREE SAMPLE -->
+    <div class="dd-close" style="grid-template-columns:1fr;max-width:760px;margin:0 auto;">
+      <div class="dd-sample">
+        <span class="dd-bg-mark" aria-hidden="true">
+          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="22"><path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255"/><path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke-width="13" opacity="0.55"/><line x1="62" y1="255" x2="338" y2="255" stroke-width="20" stroke-linecap="round"/></g></svg>
+        </span>
+        <div class="eyebrow">Free sample offer</div>
+        <h3>Try it with one free sample.</h3>
+        <p>Send one menu, invoice, receipt, form, screenshot or WhatsApp message list. We'll show you exactly what it looks like cleaned up — no cost, no commitment.</p>
+        <div class="dd-sample-cta">
+          <a href="https://wa.me/447806949207?text=Hi%2C%20I%27d%20like%20to%20send%20a%20sample%20document%20to%20Masul%20Data%20Desk" class="btn btn-wa" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.518 5.276l-.999 3.648 3.97-1.023z"/></svg>
+            Send on WhatsApp
+          </a>
+          <a href="mailto:ibrahim@masuldigital.co.uk?subject=Free%20Sample%20Request%20-%20Masul%20Data%20Desk" class="btn btn-line">Email a sample</a>
+          <a class="btn btn-line" href="Pricing.html#datadesk-pricing">See cleanup pricing</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ────────────── CTA STRIP ────────────── -->
+<section class="section" id="contact" data-screen-label="07 Contact" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="cta-strip">
+      <span class="mark-bg" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="22"><path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255"/><path d="M 116,255 Q 116,138 200,138 Q 284,138 284,255" stroke-width="17"/><path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke-width="13"/><line x1="62" y1="255" x2="338" y2="255" stroke-width="20" stroke-linecap="round"/></g></svg>
+      </span>
+
+      <div>
+        <div class="eyebrow" style="color: var(--teal-light);">Free digital check</div>
+        <h2 style="margin-top:14px;">
+          Tell us about your business.<br/>We'll send back a one-page plan within 24 hours.
+        </h2>
+        <p>No payment required, no sales call. Just an honest review of what you have, what's missing, and what we'd do first.</p>
+        <div style="display:flex; gap:24px; flex-wrap:wrap; margin-top: 28px;">
+          <div>
+            <div class="eyebrow" style="color: rgba(255,255,255,0.45);">WhatsApp</div>
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:16px;margin-top:4px;">+44 7XXX XXX XXX</div>
+          </div>
+          <div>
+            <div class="eyebrow" style="color: rgba(255,255,255,0.45);">Email</div>
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:16px;margin-top:4px;">ibrahimdabdirahman@gmail.com</div>
+          </div>
+          <div>
+            <div class="eyebrow" style="color: rgba(255,255,255,0.45);">Office</div>
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:16px;margin-top:4px;">South East London, UK</div>
+          </div>
+        </div>
+      </div>
+
+      <form class="form" id="leadForm" onsubmit="return submitLead(event)">
+        <div class="group">
+          <label for="biz">Business name</label>
+          <input id="biz" name="biz" placeholder="e.g. Luxe Hair Studio" required />
+        </div>
+        <div class="group">
+          <label for="type">Business type</label>
+          <select id="type" name="type" required>
+            <option value="">Choose one…</option>
+            <option>Restaurant / café</option>
+            <option>Barber / salon</option>
+            <option>Clinic / pharmacy</option>
+            <option>Shop / bakery</option>
+            <option>Service / trades</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="group">
+          <label for="wa">WhatsApp number</label>
+          <input id="wa" name="wa" placeholder="+44 …" required />
+        </div>
+        <div class="group">
+          <label for="need">What you need most</label>
+          <select id="need" name="need">
+            <option>Falcon AI receptionist</option>
+            <option>Data Desk — document cleanup</option>
+            <option>QR menu</option>
+            <option>Website</option>
+            <option>Google Business setup</option>
+            <option>Reviews</option>
+            <option>Digital flyers</option>
+            <option>Not sure — please advise</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Send my free check</button>
+        <div class="ok-msg">
+          ✓ Thank you. We'll send your one-page plan over WhatsApp within 24 hours.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="../index.html" class="nav-logo" style="margin-bottom:0;">
+          <span class="nav-mark" aria-hidden="true">
+        <!-- inline mark so it picks up currentColor effects when needed -->
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none">
+            <path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255" stroke="var(--accent)" stroke-width="22"/>
+            <path d="M 116,255 Q 116,138 200,138 Q 284,138 284,255" stroke="var(--accent)" stroke-width="17" opacity="0.78"/>
+            <path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke="var(--accent)" stroke-width="13" opacity="0.55"/>
+            <line x1="62" y1="255" x2="338" y2="255" stroke="var(--accent)" stroke-width="20" stroke-linecap="round"/>
+            <line x1="116" y1="255" x2="116" y2="282" stroke="var(--accent)" stroke-width="13" stroke-linecap="round"/>
+            <line x1="200" y1="255" x2="200" y2="292" stroke="var(--accent)" stroke-width="13" stroke-linecap="round"/>
+            <line x1="284" y1="255" x2="284" y2="282" stroke="var(--accent)" stroke-width="13" stroke-linecap="round"/>
+          </g>
+          <circle cx="200" cy="255" r="11" fill="var(--accent)"/>
+        </svg>
+      </span>
+          <span class="nav-wordmark">MASUL DIGITAL<span class="sub">DIGITAL SERVICES</span></span>
+        </a>
+        <p>Digital services and AI reception for local businesses across South East London and the UK. A subsidiary of Masul Group.</p>
+        <div class="foot-tagline">Responsible · Trusted · Lasting</div>
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="../pages/Falcon%20AI.html">Falcon AI Receptionist</a></li>
+          <li><a href="../pages/Data%20Desk.html">Masul Data Desk</a></li>
+          <li><a href="../pages/Services.html">QR Menus &amp; Cards</a></li>
+          <li><a href="../pages/Services.html">One-page Websites</a></li>
+          <li><a href="../pages/Services.html">Google Business</a></li>
+          <li><a href="../pages/Services.html">Review Systems</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="../pages/Pricing.html">Pricing</a></li>
+          <li><a href="../index.html#how">How it works</a></li>
+          <li><a href="../pages/Services.html#showcase">Showcase</a></li>
+          <li><a href="../pages/Pricing.html#faq">FAQ</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:ibrahim@masuldigital.co.uk">Email</a></li>
+          <li><a href="https://wa.me/447806949207">WhatsApp</a></li>
+          <li><span>South East London, UK</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Masul Digital · A subsidiary of Masul Group</div>
+      <div class="right"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Brand kit</a></div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/" class="wa-fab" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="white">
+    <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.518 5.276l-.999 3.648 3.97-1.023zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+  </svg>
+</a>
+
+<script>
+  // ─── NAV: mobile menu ────────────────────────
+  const burger = document.getElementById('burger');
+  const mob = document.getElementById('mob');
+  burger.addEventListener('click', () => {
+    const open = burger.classList.toggle('open');
+    mob.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('[data-mob-link]').forEach(a => {
+    a.addEventListener('click', () => {
+      burger.classList.remove('open');
+      mob.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ─── FAQ accordion ───────────────────────────
+  document.querySelectorAll('.faq-item .faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+  // open first by default
+  document.querySelector('.faq-item')?.classList.add('open');
+
+  // ─── Lead form: client-side ─────────────────
+  function submitLead(e) {
+    e.preventDefault();
+    const f = document.getElementById('leadForm');
+    f.classList.add('sent');
+    return false;
+  }
+
+  // ─── Tweak hooks ────────────────────────────
+  const TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "theme": "light",
+    "accent": "#0087A8",
+    "showFloatingChat": true
+  }/*EDITMODE-END*/;
+
+  // Map curated accent hex → matching dark/tint
+  const ACCENT_MAP = {
+    '#0087A8': { dark: '#006580', tint: '#E0F4F9' }, // Brand Teal
+    '#1A1614': { dark: '#000000', tint: '#EFEDEB' }, // Ink
+    '#16957A': { dark: '#0F6E5A', tint: '#E0F2EC' }, // Aurora green
+    '#C0671F': { dark: '#8E4A11', tint: '#FBEFE2' }  // Sun rust
+  };
+
+  function applyTweaks(t) {
+    document.body.setAttribute('data-theme', t.theme || 'light');
+    const a = ACCENT_MAP[t.accent] || ACCENT_MAP['#0087A8'];
+    document.body.style.setProperty('--accent', t.accent);
+    document.body.style.setProperty('--accent-dark', a.dark);
+    document.body.style.setProperty('--accent-tint', a.tint);
+    const fab = document.querySelector('.wa-fab');
+    if (fab) fab.style.display = t.showFloatingChat ? 'flex' : 'none';
+  }
+  applyTweaks(TWEAKS_DEFAULTS);
+
+  window.__TWEAKS_DEFAULTS = TWEAKS_DEFAULTS;
+  window.__applyTweaks = applyTweaks;
+</script>
+
+<!-- Tweaks panel (host-toggled) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="../tweaks-panel.jsx"></script>
+<script type="text/babel">
+  const { useEffect } = React;
+  function App() {
+    const [t, setTweak] = useTweaks(window.__TWEAKS_DEFAULTS);
+    useEffect(() => { window.__applyTweaks(t); }, [t]);
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="Theme">
+          <TweakRadio
+            label="Surface"
+            value={t.theme}
+            onChange={v => setTweak('theme', v)}
+            options={[
+              { value: 'light', label: 'Light' },
+              { value: 'ink',   label: 'Ink' },
+              { value: 'teal',  label: 'Teal' }
+            ]}
+          />
+        </TweakSection>
+        <TweakSection title="Accent">
+          <TweakColor
+            label="Brand accent"
+            value={t.accent}
+            onChange={v => setTweak('accent', v)}
+            options={['#0087A8', '#1A1614', '#16957A', '#C0671F']}
+          />
+        </TweakSection>
+        <TweakSection title="Other">
+          <TweakToggle
+            label="Show WhatsApp chat bubble"
+            value={t.showFloatingChat}
+            onChange={v => setTweak('showFloatingChat', v)}
+          />
+        </TweakSection>
+      </TweaksPanel>
+    );
+  }
+  const root = document.createElement('div');
+  document.body.appendChild(root);
+  ReactDOM.createRoot(root).render(<App />);
+</script>
+
+</body>
+</html>
