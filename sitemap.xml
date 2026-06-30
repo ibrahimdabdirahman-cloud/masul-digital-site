@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://masul-digital-site.vercel.app/</loc><lastmod>2026-06-26</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://masul-digital-site.vercel.app/pages/Data%20Desk</loc><lastmod>2026-06-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://masul-digital-site.vercel.app/pages/Falcon%20AI</loc><lastmod>2026-06-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://masul-digital-site.vercel.app/pages/Pricing</loc><lastmod>2026-06-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://masul-digital-site.vercel.app/pages/Services</loc><lastmod>2026-06-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://masul-digital-site.vercel.app/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://masul-digital-site.vercel.app/falcon</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://masul-digital-site.vercel.app/data-desk</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://masul-digital-site.vercel.app/ai-services</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://masul-digital-site.vercel.app/pricing</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://masul-digital-site.vercel.app/faq</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

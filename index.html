@@ -10,243 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
-<style>
-  /* ───────── HERO (AI-voice led) — page-specific enhancements ───────── */
-  .hero-grid { align-items: center; }
-  .hero-pill .dot { animation: heroDot 2.2s ease-in-out infinite; }
-  @keyframes heroDot { 0%,100%{ box-shadow:0 0 0 0 rgba(0,135,168,0.45);} 60%{ box-shadow:0 0 0 6px rgba(0,135,168,0);} }
-  .hero h1 .line { display: block; }
-  .hero-trust-mini {
-    display: flex; align-items: center; gap: 10px;
-    margin: 0 0 22px; font-size: 12.5px; color: var(--muted);
-    letter-spacing: 0.02em;
-  }
-  .hero-trust-mini .stars { color: #F5A623; letter-spacing: 1px; font-size: 12px; }
-  .hero-trust-mini b { color: var(--fg); font-family:'Poppins',sans-serif; font-weight: 600; }
-
-  /* Hero visual: live Falcon call */
-  .hero-stage {
-    position: relative;
-    min-height: 480px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hero-callbox {
-    position: relative;
-    width: min(384px, 100%);
-  }
-  .hero-glow {
-    position: absolute; z-index: 0;
-    left: 50%; top: 50%; transform: translate(-50%,-50%);
-    width: 360px; height: 360px; border-radius: 50%;
-    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 36%, transparent), transparent 68%);
-    filter: blur(26px);
-    animation: glowPulse 6s ease-in-out infinite;
-  }
-  @keyframes glowPulse { 0%,100%{ transform: translate(-50%,-50%) scale(1); opacity:.85;} 50%{ transform: translate(-50%,-50%) scale(1.08); opacity:1;} }
-  .hero-callbox .call-card {
-    position: relative; z-index: 2;
-    width: 100%;
-  }
-  .hero-callbox .call-card .call-thread { max-height: none; }
-
-  /* animated voice waveform in the call header */
-  .wave { display: flex; align-items: center; gap: 3px; height: 22px; }
-  .wave i {
-    width: 3px; height: 6px; border-radius: 3px;
-    background: #00C4E8;
-    animation: wv 1.1s ease-in-out infinite;
-  }
-  .wave i:nth-child(2){ animation-delay:.12s } .wave i:nth-child(3){ animation-delay:.24s }
-  .wave i:nth-child(4){ animation-delay:.36s } .wave i:nth-child(5){ animation-delay:.48s }
-  .wave i:nth-child(6){ animation-delay:.60s } .wave i:nth-child(7){ animation-delay:.72s }
-  @keyframes wv { 0%,100%{ height:6px; opacity:.5 } 50%{ height:20px; opacity:1 } }
-  @media (prefers-reduced-motion: reduce){
-    .wave i, .hero-glow, .hero-pill .dot { animation: none !important; }
-  }
-
-  /* floating chips around the hero card */
-  .hero-chip {
-    position: absolute; z-index: 3;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 11px 14px;
-    box-shadow: 0 18px 40px -16px rgba(0,0,0,0.22);
-    display: flex; align-items: center; gap: 10px;
-    font-size: 12px; color: var(--fg);
-  }
-  .hero-chip .ic {
-    width: 30px; height: 30px; border-radius: 9px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--accent-tint); color: var(--accent);
-  }
-  .hero-chip .ic svg { width: 16px; height: 16px; }
-  .hero-chip b { font-family:'Poppins',sans-serif; font-weight: 600; display:block; font-size: 12.5px; }
-  .hero-chip span { color: var(--muted); font-size: 11px; }
-  .hero-chip.booked { left: -30px; top: -40px; transform: rotate(-4deg); }
-  .hero-chip.saved  { right: -30px; bottom: 22px; transform: rotate(4deg); }
-  .hero-chip.saved .ic { background: rgba(46,204,113,0.14); color:#1f9d57; }
-
-  @media (max-width: 980px){
-    .hero-stage { min-height: 0; margin-top: 40px; }
-    .hero-chip.booked { left: -8px; top: -30px; }
-    .hero-chip.saved  { right: -8px; bottom: 12px; }
-  }
-  @media (max-width: 420px){
-    .hero-chip { display: none; }
-  }
-
-  /* services section intro link colour safety + bridge band */
-  .bridge {
-    background: var(--surface);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-
-  /* ───────── AI SERVICES SECTION ───────── */
-  .faq-item.open .faq-a { max-height: 420px; }
-  .ai-band { position: relative; overflow: hidden; }
-  .ai-band .wrap { position: relative; z-index: 1; }
-  .ai-bg-mark {
-    position: absolute; right: -7%; top: -10%;
-    width: 460px; max-width: 54vw; color: var(--accent);
-    opacity: 0.05; pointer-events: none; z-index: 0;
-  }
-  [data-theme="ink"] .ai-bg-mark { opacity: 0.10; }
-  [data-theme="teal"] .ai-bg-mark { opacity: 0.14; color: var(--white); }
-  .ai-bg-mark svg { width: 100%; height: 100%; }
-
-  .ai-top { max-width: 780px; }
-  .ai-top h2 {
-    font-size: clamp(26px, 3.4vw, 40px);
-    line-height: 1.06; letter-spacing: -0.022em;
-    margin: 12px 0 16px;
-  }
-  .ai-top h2 em { font-style: normal; color: var(--accent); position: relative; white-space: nowrap; }
-  .ai-top h2 em::after { content:''; position:absolute; left:0; right:0; bottom:0.04em; height:0.12em; background:var(--accent-tint); z-index:-1; border-radius:4px; }
-  [data-theme="teal"] .ai-top h2 em { color: var(--white); }
-  [data-theme="teal"] .ai-top h2 em::after { background: rgba(255,255,255,0.22); }
-  .ai-top .ai-lede { color: var(--muted); font-size: 17px; line-height: 1.62; max-width: 62ch; }
-
-  .ai-steps {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
-    margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--line);
-  }
-  .ai-step .sn { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent); font-weight:500; letter-spacing:0.06em; }
-  .ai-step h4 { font-size: 16px; font-weight: 600; margin: 9px 0 6px; }
-  .ai-step p { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
-
-  .ai-sub-head { margin: clamp(44px,5vw,60px) 0 26px; max-width: 700px; }
-  .ai-sub-head h3 { font-size: clamp(22px,2.9vw,32px); font-weight: 700; letter-spacing: -0.015em; margin: 10px 0 10px; }
-  .ai-sub-head p { color: var(--muted); font-size: 15.5px; line-height: 1.6; }
-
-  .ai-skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .ai-skill {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: var(--r-lg); padding: 24px;
-    display: flex; flex-direction: column; gap: 12px;
-    position: relative; transition: border-color .2s, transform .2s;
-  }
-  .ai-skill:hover { border-color: var(--accent); transform: translateY(-3px); }
-  .ai-skill .sk-icon { width: 42px; height: 42px; border-radius: 11px; background: var(--accent-tint); color: var(--accent); display: flex; align-items: center; justify-content: center; }
-  .ai-skill .sk-icon svg { width: 22px; height: 22px; }
-  .ai-skill .sk-num { position: absolute; top: 26px; right: 26px; font-family:'JetBrains Mono',monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
-  .ai-skill h4 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
-  .ai-skill p { color: var(--muted); font-size: 14px; line-height: 1.55; flex: 1; }
-  .ai-skill .sk-foot { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; padding-top: 14px; border-top: 1px solid var(--line); }
-  .ai-skill .sk-tag { font-size: 11.5px; font-weight: 500; padding: 5px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
-  .ai-skill .sk-tag.time { color: var(--accent-dark); background: var(--accent-tint); border-color: transparent; font-weight: 600; }
-  [data-theme="ink"] .ai-skill .sk-tag.time, [data-theme="teal"] .ai-skill .sk-tag.time { color: var(--accent); }
-  .ai-skill .sk-tag svg { width: 12px; height: 12px; flex-shrink: 0; }
-
-  .ai-sectors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .ai-sector { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 22px; transition: border-color .2s, transform .2s; }
-  .ai-sector:hover { border-color: var(--accent); transform: translateY(-3px); }
-  .ai-sector .se-top { display: flex; align-items: center; gap: 11px; margin-bottom: 10px; }
-  .ai-sector .se-ic { width: 34px; height: 34px; border-radius: 9px; background: var(--accent-tint); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .ai-sector .se-ic svg { width: 18px; height: 18px; }
-  .ai-sector h4 { font-size: 16px; font-weight: 700; }
-  .ai-sector p { color: var(--muted); font-size: 13.5px; line-height: 1.55; }
-
-  .ai-pricebar {
-    margin-top: clamp(44px,5vw,56px);
-    background: var(--ink); color: #F4F1EE;
-    border-radius: var(--r-lg);
-    padding: clamp(26px,3.5vw,42px);
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 28px; flex-wrap: wrap; position: relative; overflow: hidden;
-  }
-  .ai-pricebar .pb-mark { position: absolute; right: -3%; top: 50%; transform: translateY(-50%); width: 300px; opacity: 0.07; color: var(--teal-light); pointer-events: none; }
-  .ai-pricebar .pb-mark svg { width: 100%; }
-  .ai-pricebar h3 { color: var(--white); font-size: clamp(20px,2.4vw,28px); letter-spacing: -0.02em; position: relative; z-index: 1; }
-  .ai-pricebar p { color: rgba(255,255,255,0.66); font-size: 14.5px; margin-top: 8px; max-width: 50ch; position: relative; z-index: 1; }
-  .ai-pricebar .pb-cta { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
-  .ai-pricebar .btn-ghost { color: #F4F1EE; border-color: rgba(255,255,255,0.22); }
-  .ai-pricebar .btn-ghost:hover { color: var(--white); border-color: var(--white); background: rgba(255,255,255,0.07); }
-
-  /* Falcon in-section pricing link (dark band) */
-  .fb-pricelink {
-    background: linear-gradient(180deg, #00768f 0%, #00667d 100%);
-    border: 1px solid rgba(0,196,232,0.42);
-    border-radius: var(--r-lg);
-    padding: clamp(24px,3vw,38px);
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 24px; flex-wrap: wrap;
-    box-shadow: 0 24px 50px -22px rgba(0,135,168,0.5);
-  }
-  .fb-pricelink h4 { color: var(--white); font-size: clamp(19px,2.2vw,24px); font-weight: 700; letter-spacing: -0.01em; }
-  .fb-pricelink p { color: rgba(255,255,255,0.84); font-size: 14px; margin-top: 7px; max-width: 56ch; }
-  .fb-pricelink .fb-pl-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-  .fb-pricelink .btn-primary { background: var(--white); color: var(--teal-dark); }
-  .fb-pricelink .btn-primary:hover { background: var(--teal-light); }
-  .fb-pricelink .btn-ghost { color: #F4F1EE; border-color: rgba(255,255,255,0.3); }
-  .fb-pricelink .btn-ghost:hover { border-color: var(--white); color: var(--white); background: rgba(255,255,255,0.08); }
-
-  /* ───────── CONSOLIDATED PRICING — tabs ───────── */
-  .price-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
-  .price-tab {
-    padding: 10px 18px; border-radius: 999px;
-    border: 1px solid var(--line); background: var(--surface-2);
-    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px;
-    color: var(--muted); transition: all .15s;
-  }
-  .price-tab:hover { border-color: var(--accent); color: var(--accent); }
-  .price-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  [data-theme="teal"] .price-tab.active { background: var(--white); color: var(--teal); }
-  .price-tab .pt-amt { opacity: 0.7; font-weight: 500; }
-  .price-tab.active .pt-amt { opacity: 0.85; }
-  .price-panel { display: none; }
-  .price-panel.active { display: block; animation: pricefade .25s ease; }
-  @keyframes pricefade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-  .panel-note { margin-top: 26px; font-size: 13px; color: var(--muted); text-align: center; line-height: 1.55; }
-  .panel-note b { color: var(--fg); font-weight: 600; }
-
-  /* Data Desk tier panel reused inside pricing */
-  .dd-pricing.in-pricing { max-width: 640px; margin: 0 auto; }
-
-  /* individual service rate list (Setup tab) */
-  .svc-rates { margin-top: 22px; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 20px 24px; background: var(--surface); }
-  .svc-rates .srh { font-family:'Poppins',sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.04em; margin-bottom: 4px; }
-  .svc-rates .srs { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; }
-  .svc-rate-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 36px; }
-  .svc-rate { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
-  .svc-rate .rn { font-size: 14px; color: var(--fg); font-weight: 500; }
-  .svc-rate .rp { font-family:'Poppins',sans-serif; font-weight: 700; font-size: 15px; color: var(--accent); white-space: nowrap; }
-  .svc-rate .rp .from { font-size: 10px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; margin-right: 6px; }
-
-  @media (max-width: 860px) {
-    .ai-steps { grid-template-columns: 1fr; gap: 20px; }
-    .ai-skills { grid-template-columns: 1fr 1fr; }
-    .ai-sectors { grid-template-columns: 1fr 1fr; }
-    .svc-rate-list { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 540px) {
-    .ai-skills { grid-template-columns: 1fr; }
-    .ai-sectors { grid-template-columns: 1fr; }
-    .price-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .price-tab { white-space: nowrap; }
-  }
-</style>
+<link rel="stylesheet" href="assets/pages.css" />
 <!-- seo:auto start -->
 <link rel="canonical" href="https://masul-digital-site.vercel.app/">
 <meta property="og:type" content="website">
@@ -285,7 +49,7 @@
 <!-- ────────────── NAV ────────────── -->
 <nav class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="nav-logo" aria-label="Masul Digital home">
+    <a href="/" class="nav-logo" aria-label="Masul Digital home">
       <span class="nav-mark" aria-hidden="true">
         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
           <g fill="none">
@@ -304,11 +68,11 @@
     </a>
 
     <div class="nav-links" role="navigation">
-      <a href="#falcon">Falcon AI</a>
-      <a href="#datadesk">Data Desk</a>
-      <a href="#ai-services">AI Services</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
+      <a href="/falcon">Falcon AI</a>
+      <a href="/data-desk">Data Desk</a>
+      <a href="/ai-services">AI Services</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/faq">FAQ</a>
     </div>
 
     <div class="nav-cta">
@@ -319,12 +83,11 @@
     </div>
   </div>
   <div class="mobile-panel" id="mob">
-    <a href="#falcon" data-mob-link>Falcon AI</a>
-    <a href="#datadesk" data-mob-link>Data Desk</a>
-    <a href="#ai-services" data-mob-link>AI Services</a>
-    <a href="#showcase" data-mob-link>Showcase</a>
-    <a href="#pricing" data-mob-link>Pricing</a>
-    <a href="#faq" data-mob-link>FAQ</a>
+    <a href="/falcon" data-mob-link>Falcon AI</a>
+    <a href="/data-desk" data-mob-link>Data Desk</a>
+    <a href="/ai-services" data-mob-link>AI Services</a>
+    <a href="/pricing" data-mob-link>Pricing</a>
+    <a href="/faq" data-mob-link>FAQ</a>
     <a href="#contact" data-mob-link class="btn btn-primary">Free digital check</a>
   </div>
 </nav>
@@ -349,7 +112,7 @@
         <span><b>Responsible · Trusted · Lasting</b> — a subsidiary of Masul Group</span>
       </div>
       <div class="hero-cta">
-        <a href="#falcon" class="btn btn-primary">
+        <a href="/falcon" class="btn btn-primary">
           Hear how Falcon works
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -429,480 +192,59 @@
   </div>
 </div>
 
-<!-- ────────────── FALCON RECEPTIONIST (AI) — flagship, first ────────────── -->
-<section class="section falcon-band" id="falcon" data-screen-label="Falcon AI Receptionist">
-  <span class="fb-mark" aria-hidden="true">
-    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="22"><path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255"/><path d="M 116,255 Q 116,138 200,138 Q 284,138 284,255" stroke-width="17" opacity="0.78"/><path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke-width="13" opacity="0.55"/><line x1="62" y1="255" x2="338" y2="255" stroke-width="20" stroke-linecap="round"/></g></svg>
-  </span>
+<!-- ────────────── WHAT WE DO — section summary cards ────────────── -->
+<section class="section" id="explore" data-screen-label="What we do">
   <div class="wrap">
-
-    <div class="fb-top">
-      <div>
-        <div class="eyebrow">Falcon Receptionist · AI Voice</div>
-        <h2>A real voice on the line — every call, day or night.</h2>
-        <p class="fb-lede">
-          Falcon answers your calls in a natural, human voice, qualifies your leads, and books appointments automatically — across phone, web chat, WhatsApp and SMS. No staff. No voicemail. No missed revenue.
-        </p>
-        <div class="fb-cta">
-          <a href="#pricing" class="btn btn-primary">
-            Start free 14-day trial
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-          <a href="#contact" class="btn btn-ghost">Book a 15-min demo</a>
-        </div>
-        <div class="fb-trustline">No credit card required · Setup in 24 hours · Cancel anytime</div>
-      </div>
-
-      <div class="call-card" aria-hidden="true">
-        <div class="call-head">
-          <span class="call-orb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </span>
-          <div class="who">
-            <b>Falcon · answering for you</b>
-            <span>Incoming call · Tue 18:42</span>
-          </div>
-          <span class="call-live"><span class="pulse"></span>Live</span>
-        </div>
-        <div class="call-thread">
-          <div class="bubble ai"><span class="lab">Falcon</span>Hi, thanks for calling Luxe Hair Studio. Are you looking to book in?</div>
-          <div class="bubble caller"><span class="lab">Caller</span>Yeah, a cut and finish — sometime Thursday if you've got it.</div>
-          <div class="bubble ai"><span class="lab">Falcon</span>We do — 10:45 or 2:15 with Sofia. Which suits?</div>
-          <div class="bubble caller"><span class="lab">Caller</span>10:45 is perfect.</div>
-          <div class="bubble ai"><span class="lab">Falcon</span>Booked for Thursday 10:45 with Sofia. I've texted you the confirmation. See you then!</div>
-        </div>
-        <div class="call-result">
-          <span class="call-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>New booking captured</span>
-          <span class="call-tag book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Thu 10:45 · Sofia</span>
-        </div>
-      </div>
+    <div class="section-head">
+      <div class="eyebrow">Everything Masul Digital does</div>
+      <h2>One partner for AI, data and your local presence.</h2>
+      <p>Each part of Masul Digital has its own page — explore the one that fits your business, or start with a free digital check and we'll point you to the right place.</p>
     </div>
 
-    <div class="fb-stats">
-      <div class="fb-stat"><div class="val">62%</div><div class="lbl">of UK SME calls go unanswered outside hours</div></div>
-      <div class="fb-stat"><div class="val">£480</div><div class="lbl">average revenue lost per missed booking</div></div>
-      <div class="fb-stat"><div class="val">100%</div><div class="lbl">call answer rate with Falcon AI</div></div>
-      <div class="fb-stat"><div class="val">&lt;1s</div><div class="lbl">pickup time — faster than any human</div></div>
-    </div>
-
-    <div class="fb-subhead">
-      <div class="eyebrow">One AI · every channel</div>
-      <h3>Everything your front office needs, handled automatically.</h3>
-    </div>
-    <div class="fb-channels">
-      <div class="fb-chan">
-        <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-        <h4>Voice AI receptionist</h4>
-        <p>Answers every call in your business's voice. Greets, qualifies and books — in under two minutes.</p>
-      </div>
-      <div class="fb-chan">
-        <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-        <h4>Website chat widget</h4>
-        <p>Embeddable AI chat, branded to match your site. GDPR-compliant and live in minutes.</p>
-      </div>
-      <div class="fb-chan">
-        <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.518 5.276l-.999 3.648 3.97-1.023zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg></span>
-        <h4>WhatsApp assistant</h4>
-        <p>Replies to WhatsApp enquiries instantly, qualifies leads and books straight in the chat.</p>
-      </div>
-      <div class="fb-chan">
-        <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></span>
-        <h4>SMS follow-up</h4>
-        <p>Automatic confirmations, reminders and re-engagement texts after every interaction.</p>
-      </div>
-    </div>
-
-    <div class="fb-subhead">
-      <div class="eyebrow">How Falcon works</div>
-      <h3>From first ring to booked job — in under three minutes.</h3>
-    </div>
-    <div class="fb-flow">
-      <div class="fb-step"><div class="n">STEP 01</div><h4>Customer calls your number</h4><p>Your existing line forwards to Falcon — or we give you a new one. No wait, no voicemail.</p></div>
-      <div class="fb-step"><div class="n">STEP 02</div><h4>Falcon qualifies the lead</h4><p>Asks your custom questions, scores the lead, and flags hot ones to you instantly.</p></div>
-      <div class="fb-step"><div class="n">STEP 03</div><h4>Appointment booked</h4><p>Checks your live calendar, offers slots, and confirms by SMS to both parties.</p></div>
-      <div class="fb-step"><div class="n">STEP 04</div><h4>Everything syncs to your CRM</h4><p>Name, number, job type, lead score and transcript — logged automatically.</p></div>
-      <div class="fb-step"><div class="n">STEP 05</div><h4>You do great work</h4><p>Falcon handles reminders and keeps your diary full while you're on the tools.</p></div>
-    </div>
-
-    <div class="fb-subhead" id="falcon-plans">
-      <div class="eyebrow">Falcon plans · monthly</div>
-      <h3>Simple monthly pricing. No surprises. Cancel anytime.</h3>
-    </div>
-    <div class="fb-pricelink">
-      <div>
-        <h4>Plans from £79/month — with a 14-day free trial.</h4>
-        <p>Three monthly plans for solo traders, growing SMEs and busy clinics. No credit card to start, £199 one-time setup (waived on annual). Full breakdown sits in our pricing section.</p>
-      </div>
-      <div class="fb-pl-cta">
-        <a href="#pricing" class="btn btn-primary" data-goto-ptab="falcon">
-          See Falcon pricing
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a href="#contact" class="btn btn-ghost">Book a 15-min demo</a>
-      </div>
-    </div>
-    <p class="fb-note">
-      Agencies &amp; resellers: ask about <b>white-label Falcon</b> under your own brand.
-    </p>
-
-  </div>
-</section>
-
-<!-- ────────────── MASUL DATA DESK (flagship service) — second ────────────── -->
-<section class="section dd-band" id="datadesk" data-screen-label="Masul Data Desk">
-  <span class="dd-bg-mark" aria-hidden="true">
-    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="22"><path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255"/><path d="M 116,255 Q 116,138 200,138 Q 284,138 284,255" stroke-width="17" opacity="0.78"/><path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke-width="13" opacity="0.55"/><line x1="62" y1="255" x2="338" y2="255" stroke-width="20" stroke-linecap="round"/></g></svg>
-  </span>
-
-  <div class="wrap">
-    <div class="dd-top">
-      <div class="dd-intro">
-        <span class="dd-seal"><span class="pip"></span> A service by Masul Digital</span>
-        <div class="eyebrow">Masul Data Desk</div>
-        <h2>Turn messy documents into <em>clean business data.</em></h2>
-        <p class="dd-lede">
-          Send us menus, invoices, forms, receipts, PDFs or WhatsApp messages. Our AI extracts the important fields and a human reviews every result — so you get clean spreadsheets, customer trackers and reports your business can actually use.
-        </p>
-        <div class="dd-cta">
-          <a href="https://wa.me/447806949207?text=Hi%2C%20I%27d%20like%20to%20send%20a%20sample%20document%20to%20Masul%20Data%20Desk" class="btn btn-primary" target="_blank" rel="noopener">
-            Send a free sample
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-          <a href="#dd-clean" class="btn btn-ghost">See what we clean</a>
-        </div>
-        <div class="dd-trustline">
-          <b>Menus</b> · <b>Invoices</b> · <b>WhatsApp messages</b> · <b>Forms</b> · <b>PDFs</b> · Human reviewed
-        </div>
-      </div>
-
-      <div class="dd-visual" aria-hidden="true">
-        <div class="dd-input photo">
-          <div class="dd-ph"><span>menu photo</span></div>
-          <div class="fn">specials_board.jpg</div>
-        </div>
-        <div class="dd-input wa">
-          <div class="wa-top">
-            <span class="wa-av"><svg viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg></span>
-            <span class="wa-name">Customer · WhatsApp</span>
-          </div>
-          <div class="dd-wa-bubble">Hi can I book a cut Tue 2pm? — Marcus</div>
-          <div class="dd-wa-bubble">2 boxes delivered, £148 inc VAT 🧾</div>
-        </div>
-
-        <div class="dd-sheet">
-          <div class="dd-sheet-bar">
-            <span class="dots"><i></i><i></i><i></i></span>
-            <span class="file">expenses_march.xlsx</span>
-            <span class="rev">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Reviewed
-            </span>
-          </div>
-          <table>
-            <thead>
-              <tr><th>Supplier</th><th>Date</th><th class="r">VAT</th><th class="r">Total</th></tr>
-            </thead>
-            <tbody>
-              <tr><td class="sup">Bidfood</td><td class="num">04 Mar</td><td class="num r">£18.40</td><td class="num r">£110.40</td></tr>
-              <tr><td class="sup">Brakes</td><td class="num">09 Mar</td><td class="num r">£24.66</td><td class="num r">£147.96</td></tr>
-              <tr><td class="sup">Booker</td><td class="num">15 Mar</td><td class="num r">£9.20</td><td class="num r">£55.20</td></tr>
-              <tr><td class="sup">Lyreco</td><td class="num">22 Mar</td><td class="num r">£6.14</td><td class="num r">£36.84</td></tr>
-              <tr class="tot"><td>Total</td><td></td><td class="num r">£58.40</td><td class="num r">£350.40</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <span class="dd-extract">
-          <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-          AI extracted
+    <div class="summary-grid">
+      <a class="summary-card" href="/falcon">
+        <span class="sc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div class="sc-ey">AI receptionist</div>
+        <h3>Falcon AI</h3>
+        <p>A real voice on the line, 24/7. Falcon answers calls, web chat, WhatsApp and SMS, qualifies leads and books jobs automatically — no missed revenue.</p>
+        <span class="sc-price">From <b>£79/mo</b> · 14-day free trial</span>
+        <span class="sc-go">Explore Falcon AI
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </span>
-      </div>
-    </div>
+      </a>
 
-    <div id="dd-clean" class="dd-block-head">
-      <div class="eyebrow">What we accept</div>
-      <h3>Send us anything messy.</h3>
-      <p>If it contains business information, we can extract it. You don't need to prepare, format or clean it first.</p>
-    </div>
-    <div class="dd-chips">
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M5 2v20"/><path d="M19 2v20"/><path d="M19 8c0-3-1.5-6-1.5-6"/><path d="M16 8h6"/></svg></span><span>Menus</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14v18l-3-2-3 2-3-2-3 2V3z"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/></svg></span><span>Invoices</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1.5L8 22l2-1.5L12 22l2-1.5L16 22l2-1.5L20 22V2l-2 1.5L16 2l-2 1.5L12 2l-2 1.5L8 2 6 3.5 4 2z"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="14" y2="13"/></svg></span><span>Receipts</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><span>WhatsApp messages</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span>Booking requests</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.2L4 17.2V4z"/><line x1="8" y1="9" x2="16" y2="9"/></svg></span><span>Customer enquiries</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></span><span>Paper forms</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15h6"/><path d="M9 12h2"/></svg></span><span>PDFs</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="15" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 5l1.5-2h5L16 5"/></svg></span><span>Screenshots</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span><span>Old spreadsheets</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h12"/><circle cx="19" cy="18" r="2"/></svg></span><span>Price lists</span></div>
-      <div class="dd-chip"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v3h6V3"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="12" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="12" y1="15" x2="16" y2="15"/></svg></span><span>Attendance sheets</span></div>
-    </div>
-
-    <div class="dd-block-head">
-      <div class="eyebrow">Our desks</div>
-      <h3>Five specialist desks. One clean result.</h3>
-      <p>Each desk handles a specific type of document or message. You choose what to send — we handle the rest.</p>
-    </div>
-    <div class="dd-desks">
-      <article class="dd-desk d1">
-        <span class="dk-num">01</span>
-        <span class="dk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v20"/><path d="M3 2v7a2 2 0 0 0 4 0V2"/><path d="M19 2c-1.5 1-2 3-2 6h4c0-3-.5-5-2-6z"/><path d="M19 8v14"/></svg></span>
-        <h4>Menu Desk</h4>
-        <p>Digitise old menus, PDFs, screenshots and delivery-app listings into clean, editable menu data — categories, items, prices and allergens. Ready to drop straight into our QR Menu setup.</p>
-        <div class="dk-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><b>Editable menu spreadsheet</b> — ready for QR setup</span></div>
-      </article>
-      <article class="dd-desk d2">
-        <span class="dk-num">02</span>
-        <span class="dk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14v18l-3-2-3 2-3-2-3 2V3z"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/></svg></span>
-        <h4>Invoice Desk</h4>
-        <p>Extract supplier names, dates, invoice numbers, VAT, totals and line items from any invoice, receipt or email into a clean monthly expense tracker.</p>
-        <div class="dk-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><b>Google Sheet / Excel</b> expense tracker</span></div>
-      </article>
-      <article class="dd-desk d3">
-        <span class="dk-num">03</span>
-        <span class="dk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
-        <h4>Lead Desk</h4>
-        <p>Turn WhatsApp, Instagram and email enquiries into a simple lead tracker showing customer name, service, date, time, status and follow-up notes.</p>
-        <div class="dk-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><b>CRM-style</b> lead &amp; booking tracker</span></div>
-      </article>
-      <article class="dd-desk d4">
-        <span class="dk-num">04</span>
-        <span class="dk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></span>
-        <h4>Forms Desk</h4>
-        <p>Convert forms, applications, intake sheets and attendance records into clean spreadsheets and reports. Ideal for clinics, NGOs and training centres.</p>
-        <div class="dk-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><b>Structured</b> spreadsheet / database</span></div>
-      </article>
-      <article class="dd-desk d5">
-        <span class="dk-num">05</span>
-        <span class="dk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v6l9 4 9-4V7"/><path d="M3 13v4l9 4 9-4v-4"/></svg></span>
-        <h4>Cleanup Desk</h4>
-        <p>Clean messy spreadsheets, old customer lists, price lists and admin files into organised, searchable, usable business records.</p>
-        <div class="dk-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><b>Organised</b> &amp; searchable records</span></div>
-      </article>
-    </div>
-
-    <div class="dd-close">
-      <div class="dd-pricing">
-        <div class="ph">Simple, honest pricing.</div>
-        <div class="ps">Start free with one sample — pay only when you see value.</div>
-        <ul class="price-feats" style="margin:18px 0 0;">
-          <li>Free sample — see it before you pay a penny</li>
-          <li>One-off cleanups, with optional monthly support</li>
-          <li>Custom rates for batches, charities &amp; NGOs</li>
-        </ul>
-        <a href="#pricing" class="btn btn-ghost" data-goto-ptab="data" style="margin-top:22px;justify-content:center;">
-          See Data Desk pricing
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-
-      <div class="dd-sample">
-        <span class="dd-bg-mark" aria-hidden="true">
-          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="22"><path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255"/><path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke-width="13" opacity="0.55"/><line x1="62" y1="255" x2="338" y2="255" stroke-width="20" stroke-linecap="round"/></g></svg>
+      <a class="summary-card" href="/data-desk">
+        <span class="sc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span>
+        <div class="sc-ey">Document cleanup</div>
+        <h3>Masul Data Desk</h3>
+        <p>Send menus, invoices, receipts, forms or WhatsApp messages. Our AI extracts the fields and a human reviews every result — you get clean, usable spreadsheets.</p>
+        <span class="sc-price">From <b>free sample</b> · pay when you see value</span>
+        <span class="sc-go">Explore the Data Desk
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </span>
-        <div class="eyebrow">Free sample offer</div>
-        <h3>Try it with one free sample.</h3>
-        <p>Send one menu, invoice, receipt, form, screenshot or WhatsApp message list. We'll show you exactly what it looks like cleaned up — no cost, no commitment.</p>
-        <div class="dd-sample-cta">
-          <a href="https://wa.me/447806949207?text=Hi%2C%20I%27d%20like%20to%20send%20a%20sample%20document%20to%20Masul%20Data%20Desk" class="btn btn-wa" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.518 5.276l-.999 3.648 3.97-1.023z"/></svg>
-            Send on WhatsApp
-          </a>
-          <a href="mailto:ibrahimdabdirahman@gmail.com?subject=Free%20Sample%20Request%20-%20Masul%20Data%20Desk" class="btn btn-line">Email a sample</a>
-        </div>
-      </div>
-    </div>
+      </a>
 
+      <a class="summary-card" href="/ai-services">
+        <span class="sc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9 12 2"/></svg></span>
+        <div class="sc-ey">Claude AI tools</div>
+        <h3>AI Services</h3>
+        <p>We install Claude AI configured for your business — answering reviews, handling bookings, replying to FAQs and creating social content automatically. Set up in person.</p>
+        <span class="sc-price">From <b>£79/mo</b> · 7-day free trial</span>
+        <span class="sc-go">Explore AI Services
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- ────────────── AI SERVICES (Claude AI tools) ────────────── -->
-<section class="section ai-band" id="ai-services" data-screen-label="AI Services">
-  <span class="ai-bg-mark" aria-hidden="true">
-    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="22"><path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255"/><path d="M 116,255 Q 116,138 200,138 Q 284,138 284,255" stroke-width="17" opacity="0.78"/><path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke-width="13" opacity="0.55"/><line x1="62" y1="255" x2="338" y2="255" stroke-width="20" stroke-linecap="round"/></g></svg>
-  </span>
-
-  <div class="wrap">
-    <div class="ai-top">
-      <span class="dd-seal"><span class="pip"></span> A service by Masul Digital</span>
-      <div class="eyebrow">AI Services · Claude AI tools</div>
-      <h2>We install AI that <em>works while you work.</em></h2>
-      <p class="ai-lede">
-        We set up Claude AI tools configured specifically for your business — not a generic chatbot, but a system that knows your menu, your services, your prices and your voice. We answer customer questions, respond to reviews, manage bookings and create social content, automatically. We come to you, install everything in person, and you're running the same day.
-      </p>
-
-      <div class="ai-steps">
-        <div class="ai-step">
-          <div class="sn">STEP 01</div>
-          <h4>We visit you</h4>
-          <p>We come to your business in person, learn how you work, and demo the AI live on our phone — so you see exactly what your customers will experience.</p>
-        </div>
-        <div class="ai-step">
-          <div class="sn">STEP 02</div>
-          <h4>We install &amp; configure</h4>
-          <p>We set the AI up for your business type and connect it to Google Business, WhatsApp and your social accounts. Setup takes around 90 minutes.</p>
-        </div>
-        <div class="ai-step">
-          <div class="sn">STEP 03</div>
-          <h4>It works. Every day.</h4>
-          <p>Reviews answered, booking enquiries handled, social posts generated — from the moment we leave. We check in monthly and keep it running.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="ai-sub-head">
-      <div class="eyebrow">What the AI does</div>
-      <h3>Six tools. One system. All working for your business.</h3>
-      <p>Every AI skill we install is pre-configured for your sector — a restaurant gets different tools to a barber. Here's what we work with.</p>
-    </div>
-
-    <div class="ai-skills">
-      <article class="ai-skill">
-        <span class="sk-num">01</span>
-        <span class="sk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9 12 2"/></svg></span>
-        <h4>Review Responder</h4>
-        <p>Reads new Google reviews and drafts a professional, human-sounding reply in your voice within seconds — warm for the good, calm and measured for the rest.</p>
-        <div class="sk-foot">
-          <span class="sk-tag time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>2–4 hrs/wk</span>
-          <span class="sk-tag">All business types</span>
-        </div>
-      </article>
-
-      <article class="ai-skill">
-        <span class="sk-num">02</span>
-        <span class="sk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-        <h4>Booking Assistant</h4>
-        <p>Handles WhatsApp booking requests automatically — checks availability, confirms appointments, sends reminders and follows up no-shows, even mid-service.</p>
-        <div class="sk-foot">
-          <span class="sk-tag time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>1–3 hrs/wk</span>
-          <span class="sk-tag">Salons · Barbers · Beauty</span>
-        </div>
-      </article>
-
-      <article class="ai-skill">
-        <span class="sk-num">03</span>
-        <span class="sk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-        <h4>Customer FAQ</h4>
-        <p>Answers the everyday questions — hours, prices, allergens, services, directions — instantly via WhatsApp or website chat. You stop being interrupted.</p>
-        <div class="sk-foot">
-          <span class="sk-tag time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>1–2 hrs/wk</span>
-          <span class="sk-tag">Restaurants · Cafes · Takeaways</span>
-        </div>
-      </article>
-
-      <article class="ai-skill">
-        <span class="sk-num">04</span>
-        <span class="sk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>
-        <h4>Social Content Engine</h4>
-        <p>Generates ready-to-post Instagram and Facebook content each week from your menu, offers and seasonal moments. Captions written, hashtags included.</p>
-        <div class="sk-foot">
-          <span class="sk-tag time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>2–3 hrs/wk</span>
-          <span class="sk-tag">All business types</span>
-        </div>
-      </article>
-
-      <article class="ai-skill">
-        <span class="sk-num">05</span>
-        <span class="sk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14v18l-3-2-3 2-3-2-3 2V3z"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/></svg></span>
-        <h4>Invoice &amp; Quote Generator</h4>
-        <p>Send a voice note or quick text about a job — the AI turns it into a professional, branded quote or invoice, ready to send. No templates, no software to learn.</p>
-        <div class="sk-foot">
-          <span class="sk-tag time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>1–2 hrs/wk</span>
-          <span class="sk-tag">Beauty · Trades · Freelancers</span>
-        </div>
-      </article>
-
-      <article class="ai-skill">
-        <span class="sk-num">06</span>
-        <span class="sk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-        <h4>Staff Scheduler</h4>
-        <p>Builds shift patterns, sends availability requests to staff over WhatsApp and confirms rotas automatically. Less back-and-forth, fewer missed shifts.</p>
-        <div class="sk-foot">
-          <span class="sk-tag time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>1–2 hrs/wk</span>
-          <span class="sk-tag">Restaurants · Salons · Multi-staff</span>
-        </div>
-      </article>
-    </div>
-
-    <div class="ai-sub-head">
-      <div class="eyebrow">Who we work with</div>
-      <h3>Built for the businesses that make London run.</h3>
-      <p>We work with independent owners across six sectors. Each setup is configured specifically for how your type of business operates.</p>
-    </div>
-
-    <div class="ai-sectors">
-      <article class="ai-sector">
-        <div class="se-top">
-          <span class="se-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V2"/><path d="M5 11v11"/><path d="M19 2c-1.5 1-2 3-2 6h4c0-3-.5-5-2-6z"/><path d="M19 8v14"/></svg></span>
-          <h4>Restaurants</h4>
-        </div>
-        <p>Review responses, customer FAQ, social content and weekly offer posts — your Google profile stays active and your reputation protected, without you lifting a finger after service.</p>
-      </article>
-      <article class="ai-sector">
-        <div class="se-top">
-          <span class="se-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span>
-          <h4>Hair Salons</h4>
-        </div>
-        <p>Booking assistant, review management and social content. Clients book via WhatsApp and get reminders automatically, so your chair stays full and new clients find you.</p>
-      </article>
-      <article class="ai-sector">
-        <div class="se-top">
-          <span class="se-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2l-2 5-2-5"/><path d="M12 7v6"/><circle cx="7" cy="18" r="3"/><circle cx="17" cy="18" r="3"/></svg></span>
-          <h4>Barbers</h4>
-        </div>
-        <p>Walk-in flow management, review responses and occasional social posts. The AI handles customer communication so you can focus on the cut. Simple, fast, effective.</p>
-      </article>
-      <article class="ai-sector">
-        <div class="se-top">
-          <span class="se-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/></svg></span>
-          <h4>Beauty Studios</h4>
-        </div>
-        <p>Full booking, review management, before/after content and client follow-up — the highest AI fit of any sector, with faster growth and lower no-show rates.</p>
-      </article>
-      <article class="ai-sector">
-        <div class="se-top">
-          <span class="se-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
-          <h4>Cafes</h4>
-        </div>
-        <p>Customer FAQ for menu questions and allergens, social media content and event posts — the AI handles the digital side while you focus on the experience inside.</p>
-      </article>
-      <article class="ai-sector">
-        <div class="se-top">
-          <span class="se-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
-          <h4>Takeaways</h4>
-        </div>
-        <p>Review responses and order FAQ via WhatsApp — simple tools that lift your online reputation and help first-time customers become regulars.</p>
-      </article>
-    </div>
-
-    <div class="ai-pricebar">
-      <span class="pb-mark" aria-hidden="true">
-        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="22"><path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255"/><path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke-width="13" opacity="0.55"/><line x1="62" y1="255" x2="338" y2="255" stroke-width="20" stroke-linecap="round"/></g></svg>
-      </span>
-      <div>
-        <h3>Simple monthly plans from £79/month.</h3>
-        <p>Three plans — Essential, Growth and Full AI Partner. Monthly rolling, no minimum term, setup free in your first month. Try it free for 7 days before you pay.</p>
-      </div>
-      <div class="pb-cta">
-        <a href="#pricing" class="btn btn-primary" data-goto-ptab="ai">
-          See AI Services pricing
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a href="#contact" class="btn btn-ghost">Book a free demo</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ────────────── CORE SERVICES — websites & QR last ────────────── -->
-<section class="section" id="services" data-screen-label="Core services">
+<!-- ────────────── CORE SERVICES — websites & QR ────────────── -->
+<section class="section bridge" id="services" data-screen-label="Core services">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">The rest of your digital presence</div>
       <h2>Get found, get booked — websites &amp; QR included.</h2>
-      <p>Beyond <a href="#falcon" style="color:var(--accent);font-weight:600;">Falcon</a>, the <a href="#datadesk" style="color:var(--accent);font-weight:600;">Data Desk</a> and our <a href="#ai-services" style="color:var(--accent);font-weight:600;">AI Services</a>, we build the practical pieces that turn a local shop, café or clinic into something customers can find and trust online. Start with one, add more when you need them — every price lives in <a href="#pricing" style="color:var(--accent);font-weight:600;">pricing</a>.</p>
+      <p>Beyond <a href="/falcon" style="color:var(--accent);font-weight:600;">Falcon</a>, the <a href="/data-desk" style="color:var(--accent);font-weight:600;">Data Desk</a> and our <a href="/ai-services" style="color:var(--accent);font-weight:600;">AI Services</a>, we build the practical pieces that turn a local shop, café or clinic into something customers can find and trust online. Start with one, add more when you need them — every price lives in <a href="/pricing" style="color:var(--accent);font-weight:600;">pricing</a>.</p>
     </div>
 
     <div class="services">
@@ -1038,7 +380,7 @@
 </section>
 
 <!-- ────────────── SHOWCASE ────────────── -->
-<section class="section" id="showcase" data-screen-label="Showcase">
+<section class="section bridge" id="showcase" data-screen-label="Showcase">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Before / After</div>
@@ -1078,254 +420,60 @@
   </div>
 </section>
 
-<!-- ────────────── PRICING ────────────── -->
-<section class="section" id="pricing" data-screen-label="Pricing" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+<!-- ────────────── PRICING TEASER ────────────── -->
+<section class="section" id="pricing-teaser" data-screen-label="Pricing">
   <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Pricing · everything in one place</div>
-      <h2>Simple, honest pricing. No surprises.</h2>
-      <p>All our pricing lives here. Pick a service to see its plans — monthly plans cancel any time, and setup packs are a single payment you keep forever.</p>
-    </div>
-
-    <div class="price-tabs" role="tablist">
-      <button class="price-tab active" data-ptab="falcon" role="tab">Falcon AI <span class="pt-amt">· from £79/mo</span></button>
-      <button class="price-tab" data-ptab="ai" role="tab">AI Services <span class="pt-amt">· from £79/mo</span></button>
-      <button class="price-tab" data-ptab="data" role="tab">Data Desk <span class="pt-amt">· from free</span></button>
-      <button class="price-tab" data-ptab="setup" role="tab">Setup &amp; Sites <span class="pt-amt">· from £40</span></button>
-    </div>
-
-    <!-- FALCON AI -->
-    <div class="price-panel active" data-ppanel="falcon">
-      <div class="price-grid">
-        <div class="price-card">
-          <h3>Starter</h3>
-          <p class="price-desc">For solo traders &amp; freelancers.</p>
-          <div class="amount"><span class="currency">£</span><span class="num">79</span><span class="from">/ month</span></div>
-          <ul class="price-feats">
-            <li>Web chat widget</li>
-            <li>SMS follow-up</li>
-            <li>50 bookings / month</li>
-            <li>Zapier integration</li>
-            <li>Business dashboard</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost" style="justify-content:center;">Start free trial</a>
-        </div>
-        <div class="price-card featured">
-          <span class="price-badge">Most popular</span>
-          <h3>Growth</h3>
-          <p class="price-desc">For SMEs, salons, trades &amp; clinics.</p>
-          <div class="amount"><span class="currency">£</span><span class="num">149</span><span class="from">/ month</span></div>
-          <ul class="price-feats">
-            <li>Voice AI receptionist</li>
-            <li>Web chat + WhatsApp + SMS</li>
-            <li>200 voice minutes / month</li>
-            <li>200 bookings / month</li>
-            <li>HubSpot &amp; GoHighLevel CRM</li>
-            <li>Lead qualification &amp; scoring</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary" style="justify-content:center;">Start free trial</a>
-        </div>
-        <div class="price-card">
-          <h3>Professional</h3>
-          <p class="price-desc">For clinics, law firms &amp; estate agents.</p>
-          <div class="amount"><span class="currency">£</span><span class="num">299</span><span class="from">/ month</span></div>
-          <ul class="price-feats">
-            <li>Everything in Growth</li>
-            <li>500 voice minutes / month</li>
-            <li>Unlimited bookings</li>
-            <li>All CRM integrations</li>
-            <li>Priority support</li>
-            <li>Custom AI training</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost" style="justify-content:center;">Start free trial</a>
+    <div class="teaser">
+      <div class="tz-copy">
+        <div class="eyebrow">Pricing · everything in one place</div>
+        <h2>Simple, honest pricing. No surprises.</h2>
+        <p>Monthly AI plans cancel any time. Setup packs are a single payment you keep forever. See the full breakdown — Falcon AI, AI Services, Data Desk and websites — on one page.</p>
+        <div class="ph-cta">
+          <a href="/pricing" class="btn btn-primary">
+            See full pricing
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost">Get a free digital check</a>
         </div>
       </div>
-      <p class="panel-note">All Falcon plans include a <b>14-day free trial</b> — no credit card required. £199 one-time setup, waived on annual plans. Agencies &amp; resellers: ask about <b>white-label Falcon</b>.</p>
-    </div>
-
-    <!-- AI SERVICES -->
-    <div class="price-panel" data-ppanel="ai">
-      <div class="price-grid">
-        <div class="price-card">
-          <h3>Essential AI</h3>
-          <p class="price-desc">For sole traders &amp; solo operators.</p>
-          <div class="amount"><span class="currency">£</span><span class="num">79</span><span class="from">/ month</span></div>
-          <ul class="price-feats">
-            <li>Claude AI installation &amp; configuration</li>
-            <li>1 custom AI skill — booking, FAQ or reviews</li>
-            <li>WhatsApp or email AI assistant</li>
-            <li>Monthly 30-minute check-in call</li>
-            <li>Email support, within 48 hours</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost" style="justify-content:center;">Book a free demo</a>
-        </div>
-        <div class="price-card featured">
-          <span class="price-badge">Most popular</span>
-          <h3>Growth AI</h3>
-          <p class="price-desc">For shops, cafes, restaurants &amp; salons.</p>
-          <div class="amount"><span class="currency">£</span><span class="num">149</span><span class="from">/ month</span></div>
-          <ul class="price-feats">
-            <li>Everything in Essential, plus:</li>
-            <li>3 custom AI skills — booking, reviews, social</li>
-            <li>Google review automation in your voice</li>
-            <li>Weekly social media content</li>
-            <li>Monthly performance report</li>
-            <li>Priority support, within 24 hours</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary" style="justify-content:center;">Book a free demo</a>
-        </div>
-        <div class="price-card">
-          <h3>Full AI Partner</h3>
-          <p class="price-desc">For multi-location owners &amp; salons with staff.</p>
-          <div class="amount"><span class="currency">£</span><span class="num">299</span><span class="from">/ month</span></div>
-          <ul class="price-feats">
-            <li>Everything in Growth, plus:</li>
-            <li>Unlimited custom AI skills &amp; plugins</li>
-            <li>Quarterly in-person staff training</li>
-            <li>One custom AI workflow each quarter</li>
-            <li>Multi-location support</li>
-            <li>Dedicated account manager · same-day WhatsApp</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost" style="justify-content:center;">Book a free demo</a>
-        </div>
+      <div class="tz-list">
+        <a class="tz-row" href="/pricing#falcon"><span class="tn">Falcon AI receptionist</span><span class="tp"><span class="from">From</span>£79/mo</span></a>
+        <a class="tz-row" href="/pricing#ai"><span class="tn">AI Services — reviews, bookings &amp; social</span><span class="tp"><span class="from">From</span>£79/mo</span></a>
+        <a class="tz-row" href="/pricing#data"><span class="tn">Data Desk — document cleanup</span><span class="tp"><span class="from">From</span>Free</span></a>
+        <a class="tz-row" href="/pricing#setup"><span class="tn">Websites, QR &amp; setup packs</span><span class="tp"><span class="from">From</span>£40</span></a>
       </div>
-      <p class="panel-note">All plans are <b>monthly rolling</b> — no minimum term, cancel with 30 days' notice. Setup is included free in your first month, and there's a <b>7-day free trial</b>, no card required.</p>
-    </div>
-
-    <!-- DATA DESK -->
-    <div class="price-panel" data-ppanel="data">
-      <div class="dd-pricing in-pricing">
-        <div class="ph">Pay per document — start free.</div>
-        <div class="ps">Send one sample free. Pay only when you see value. Most jobs are a one-off, with optional monthly support.</div>
-        <div class="dd-tier"><span class="tn">Free Sample</span><span class="td">One document, cleaned so you can see it first</span><span class="tp">£0</span></div>
-        <div class="dd-tier"><span class="tn">Starter Cleanup</span><span class="td">One document type, cleaned &amp; delivered</span><span class="tp">£49</span></div>
-        <div class="dd-tier"><span class="tn">Business Data Desk <span class="star">Popular</span></span><span class="td">Invoice, lead or form cleanup</span><span class="tp">£149</span></div>
-        <div class="dd-tier"><span class="tn">Monthly Support</span><span class="td">Ongoing updates, cleanup &amp; reports</span><span class="tp">£29<span style="font-size:11px;color:var(--muted);font-weight:500;">/mo</span></span></div>
-        <p class="pnote">Custom pricing available for larger batches, charities, NGOs and recurring admin support.</p>
-        <a href="https://wa.me/447806949207?text=Hi%2C%20I%27d%20like%20to%20send%20a%20sample%20document%20to%20Masul%20Data%20Desk" class="btn btn-ghost" target="_blank" rel="noopener" style="margin-top:18px;justify-content:center;">Send a free sample on WhatsApp</a>
-      </div>
-    </div>
-
-    <!-- SETUP & SITES -->
-    <div class="price-panel" data-ppanel="setup">
-      <div class="price-grid">
-        <div class="price-card">
-          <h3>QR Starter</h3>
-          <p class="price-desc">A first step for a single shop, café, or stall.</p>
-          <div class="amount"><span class="currency">£</span><span class="num">150</span><span class="from">one-time</span></div>
-          <ul class="price-feats">
-            <li>Branded QR menu (up to 30 items)</li>
-            <li>Hosted menu page on masul.link</li>
-            <li>Print-ready table tent &amp; poster</li>
-            <li>1 round of revisions</li>
-            <li>30 days of support</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost" style="justify-content:center;">Choose QR Starter</a>
-        </div>
-        <div class="price-card featured">
-          <span class="price-badge">Most popular</span>
-          <h3>Local Presence Pack</h3>
-          <p class="price-desc">Everything a new local business needs to be found and contacted.</p>
-          <div class="amount"><span class="currency">£</span><span class="num">280</span><span class="from">one-time</span></div>
-          <ul class="price-feats">
-            <li>QR Menu setup</li>
-            <li>Google Business Profile optimisation</li>
-            <li>Custom Review QR card (print-ready)</li>
-            <li>WhatsApp click-to-chat link</li>
-            <li>2 rounds of revisions</li>
-            <li>30 days of support</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary" style="justify-content:center;">Start this week</a>
-        </div>
-        <div class="price-card">
-          <h3>Full Site</h3>
-          <p class="price-desc">A one-page website with everything connected.</p>
-          <div class="amount"><span class="currency">£</span><span class="num">499</span><span class="from">one-time</span></div>
-          <ul class="price-feats">
-            <li>One-page mobile-first website</li>
-            <li>WhatsApp + Maps + booking link</li>
-            <li>Basic SEO &amp; meta tags</li>
-            <li>Contact form delivered to your inbox</li>
-            <li>2 rounds of revisions</li>
-            <li>60 days of support</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost" style="justify-content:center;">Plan my site</a>
-        </div>
-      </div>
-      <div class="svc-rates">
-        <div class="srh">Individual services — start from</div>
-        <div class="srs">Mix and match, or roll them into a pack above. Flat one-time prices.</div>
-        <div class="svc-rate-list">
-          <div class="svc-rate"><span class="rn">One-page website</span><span class="rp"><span class="from">From</span>£499</span></div>
-          <div class="svc-rate"><span class="rn">QR menus &amp; cards</span><span class="rp"><span class="from">From</span>£150</span></div>
-          <div class="svc-rate"><span class="rn">Google Business setup</span><span class="rp"><span class="from">From</span>£80</span></div>
-          <div class="svc-rate"><span class="rn">Review &amp; reputation system</span><span class="rp"><span class="from">From</span>£50</span></div>
-          <div class="svc-rate"><span class="rn">Digital flyers &amp; social</span><span class="rp"><span class="from">From</span>£40</span></div>
-        </div>
-      </div>
-      <p class="panel-note">Hosting and Google Business verification fees, where applicable, are passed through at cost. We never mark them up.</p>
     </div>
   </div>
 </section>
 
-<!-- ────────────── FAQ ────────────── -->
-<section class="section" id="faq" data-screen-label="FAQ">
+<!-- ────────────── FAQ TEASER ────────────── -->
+<section class="section bridge" id="faq-teaser" data-screen-label="FAQ">
   <div class="wrap">
-    <div class="faq-grid">
-      <div>
+    <div class="teaser">
+      <div class="tz-copy">
         <div class="eyebrow">Common questions</div>
-        <h2 style="margin-top:14px; font-size: clamp(28px, 3.6vw, 44px);">
-          Honest answers, plain language.
-        </h2>
-        <p style="color: var(--muted); margin-top: 18px; font-size: 16px;">
-          We work with shop owners every day. These are the questions we get on first calls. If something here isn't covered, send a WhatsApp — Ibrahim usually replies the same day.
-        </p>
-        <div class="seal" style="margin-top: 28px;">
-          <span class="pip"></span>
-          A subsidiary of Masul Group · London
+        <h2>Honest answers, plain language.</h2>
+        <p>Will Falcon sound real? Do you charge monthly fees? Is my data safe? How fast can you deliver? We answer the questions we get on first calls — clearly and without jargon.</p>
+        <div class="ph-cta">
+          <a href="/faq" class="btn btn-primary">
+            Read the FAQ
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="https://wa.me/447806949207" class="btn btn-ghost" target="_blank" rel="noopener">Ask on WhatsApp</a>
         </div>
       </div>
-
-      <div class="faq-list" id="faqList">
-        <div class="faq-item">
-          <button class="faq-q">Will Falcon sound like a real person? <span class="plus">+</span></button>
-          <div class="faq-a">Yes. Falcon's voice is natural, warm and professional, and we train it on your business, your services and your tone — so most callers won't realise they're speaking to an AI. You keep your existing number; we simply forward it to Falcon. Most businesses are live within 24 hours.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Do you charge monthly fees? <span class="plus">+</span></button>
-          <div class="faq-a">Our setup work — QR menus, websites, Google Business, reviews and flyers — is always a one-time payment with no subscription. The exceptions are our always-on AI services: <b>Falcon</b>, the AI receptionist, and our <b>AI Services</b> that handle reviews, bookings and social. Because they run for you every day, both are simple monthly plans from £79/mo that you can cancel anytime. Every price is laid out in our <a href="#pricing" style="color:var(--accent);font-weight:600;">pricing section</a>.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Is my data safe and GDPR-compliant? <span class="plus">+</span></button>
-          <div class="faq-a">Yes. Falcon is fully UK-GDPR compliant, all data is stored in the UK, and we're ICO registered. Calls and messages are handled in line with UK data protection law. Every plan also comes with a 14-day free trial — no credit card required.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Do I need a website to start? <span class="plus">+</span></button>
-          <div class="faq-a">No. Most local businesses begin with Falcon answering their calls, plus a QR menu and a Google Business profile. That alone usually doubles the number of customers who find and reach you. A website makes sense once you want a single place to send everyone.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">How fast can you deliver? <span class="plus">+</span></button>
-          <div class="faq-a">Falcon is usually live within 24 hours. QR menus and review cards go live in 3 working days. Google Business setup takes 5 days including verification. Full one-page websites take 5–7 working days from the moment we have your photos and copy.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Can I update the menu or prices later? <span class="plus">+</span></button>
-          <div class="faq-a">Yes. The QR code never changes — only the page behind it. Send updates over WhatsApp and they go live the same day, or we'll show you how to update items yourself.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Do you work with businesses outside South East London? <span class="plus">+</span></button>
-          <div class="faq-a">Yes — anywhere in Greater London and across the UK. Everything we deliver is digital, plus print-ready files you can take to any local printer.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">What if I don't like the first draft? <span class="plus">+</span></button>
-          <div class="faq-a">Every pack includes free revisions (1 round for QR Starter, 2 for everything else). We don't move on until you're genuinely happy with the result.</div>
-        </div>
+      <div class="tz-list">
+        <a class="tz-row" href="/faq"><span class="tn">Will Falcon sound like a real person?</span><span class="tp">→</span></a>
+        <a class="tz-row" href="/faq"><span class="tn">Do you charge monthly fees?</span><span class="tp">→</span></a>
+        <a class="tz-row" href="/faq"><span class="tn">Is my data safe and GDPR-compliant?</span><span class="tp">→</span></a>
+        <a class="tz-row" href="/faq"><span class="tn">How fast can you deliver?</span><span class="tp">→</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ────────────── CTA STRIP ────────────── -->
-<section class="section" id="contact" data-screen-label="Contact" style="padding-top: 0;">
+<!-- ────────────── CTA STRIP / CONTACT ────────────── -->
+<section class="section" id="contact" data-screen-label="Contact">
   <div class="wrap">
     <div class="cta-strip">
       <span class="mark-bg" aria-hidden="true">
@@ -1354,7 +502,7 @@
         </div>
       </div>
 
-      <form class="form" id="leadForm" onsubmit="return submitLead(event)">
+      <form class="form" id="leadForm">
         <div class="group">
           <label for="biz">Business name</label>
           <input id="biz" name="biz" placeholder="e.g. Luxe Hair Studio" required />
@@ -1403,7 +551,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="#top" class="nav-logo" style="margin-bottom: 0;">
+        <a href="/" class="nav-logo" style="margin-bottom: 0;">
           <span class="nav-mark">
             <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M 80,255 Q 80,100 200,100 Q 320,100 320,255" stroke="var(--accent)" stroke-width="22"/><path d="M 116,255 Q 116,138 200,138 Q 284,138 284,255" stroke="var(--accent)" stroke-width="17" opacity="0.78"/><path d="M 152,255 Q 152,176 200,176 Q 248,176 248,255" stroke="var(--accent)" stroke-width="13" opacity="0.55"/><line x1="62" y1="255" x2="338" y2="255" stroke="var(--accent)" stroke-width="20" stroke-linecap="round"/><line x1="116" y1="255" x2="116" y2="282" stroke="var(--accent)" stroke-width="13" stroke-linecap="round"/><line x1="200" y1="255" x2="200" y2="292" stroke="var(--accent)" stroke-width="13" stroke-linecap="round"/><line x1="284" y1="255" x2="284" y2="282" stroke="var(--accent)" stroke-width="13" stroke-linecap="round"/></g><circle cx="200" cy="255" r="11" fill="var(--accent)"/></svg>
           </span>
@@ -1416,25 +564,25 @@
       <div class="foot-col">
         <h5>Services</h5>
         <ul>
-          <li><a href="#falcon">Falcon AI Receptionist</a></li>
-          <li><a href="#datadesk">Masul Data Desk</a></li>
-          <li><a href="#ai-services">AI Services</a></li>
-          <li><a href="#services">One-page Websites</a></li>
-          <li><a href="#services">QR Menus &amp; Cards</a></li>
-          <li><a href="#services">Google Business</a></li>
-          <li><a href="#services">Review Systems</a></li>
-          <li><a href="#services">Digital Flyers</a></li>
+          <li><a href="/falcon">Falcon AI Receptionist</a></li>
+          <li><a href="/data-desk">Masul Data Desk</a></li>
+          <li><a href="/ai-services">AI Services</a></li>
+          <li><a href="/#services">One-page Websites</a></li>
+          <li><a href="/#services">QR Menus &amp; Cards</a></li>
+          <li><a href="/#services">Google Business</a></li>
+          <li><a href="/#services">Review Systems</a></li>
+          <li><a href="/#services">Digital Flyers</a></li>
         </ul>
       </div>
 
       <div class="foot-col">
         <h5>Company</h5>
         <ul>
-          <li><a href="#how">How it works</a></li>
-          <li><a href="#showcase">Showcase</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="/#how">How it works</a></li>
+          <li><a href="/#showcase">Showcase</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/#contact">Contact</a></li>
         </ul>
       </div>
 
@@ -1442,18 +590,18 @@
         <h5>Contact</h5>
         <ul>
           <li><a href="mailto:ibrahimdabdirahman@gmail.com">Email</a></li>
-          <li><a href="https://wa.me/447806949207">WhatsApp</a></li>
+          <li><a href="https://wa.me/447806949207" target="_blank" rel="noopener">WhatsApp</a></li>
           <li><span>South East London, UK</span></li>
         </ul>
       </div>
     </div>
 
     <div class="foot-bottom">
-      <div>© 2026 Masul Digital · A subsidiary of Masul Group</div>
+      <div>© <span id="year">2026</span> Masul Digital · A subsidiary of Masul Group</div>
       <div class="right">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Brand kit</a>
+        <a href="/faq">FAQ</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/#contact">Contact</a>
       </div>
     </div>
   </div>
@@ -1465,128 +613,7 @@
   </svg>
 </a>
 
-<script>
-  // ─── NAV: mobile menu ────────────────────────
-  const burger = document.getElementById('burger');
-  const mob = document.getElementById('mob');
-  burger.addEventListener('click', () => {
-    const open = burger.classList.toggle('open');
-    mob.classList.toggle('open', open);
-    burger.setAttribute('aria-expanded', open);
-  });
-  document.querySelectorAll('[data-mob-link]').forEach(a => {
-    a.addEventListener('click', () => {
-      burger.classList.remove('open');
-      mob.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // ─── FAQ accordion ───────────────────────────
-  document.querySelectorAll('.faq-item .faq-q').forEach(q => {
-    q.addEventListener('click', () => {
-      const item = q.closest('.faq-item');
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
-    });
-  });
-  document.querySelector('.faq-item')?.classList.add('open');
-
-  // ─── Pricing tabs ───────────────────────────
-  const priceTabs = document.querySelectorAll('.price-tab');
-  const pricePanels = document.querySelectorAll('.price-panel');
-  function activatePtab(key) {
-    priceTabs.forEach(t => t.classList.toggle('active', t.dataset.ptab === key));
-    pricePanels.forEach(p => p.classList.toggle('active', p.dataset.ppanel === key));
-  }
-  priceTabs.forEach(t => t.addEventListener('click', () => activatePtab(t.dataset.ptab)));
-  document.querySelectorAll('[data-goto-ptab]').forEach(a => {
-    a.addEventListener('click', () => activatePtab(a.dataset.gotoPtab));
-  });
-
-  // ─── Lead form: client-side ─────────────────
-  function submitLead(e) {
-    e.preventDefault();
-    document.getElementById('leadForm').classList.add('sent');
-    return false;
-  }
-
-  // ─── Tweak hooks ────────────────────────────
-  const TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "theme": "light",
-    "accent": "#0087A8",
-    "showFloatingChat": true
-  }/*EDITMODE-END*/;
-
-  const ACCENT_MAP = {
-    '#0087A8': { dark: '#006580', tint: '#E0F4F9' },
-    '#1A1614': { dark: '#000000', tint: '#EFEDEB' },
-    '#16957A': { dark: '#0F6E5A', tint: '#E0F2EC' },
-    '#C0671F': { dark: '#8E4A11', tint: '#FBEFE2' }
-  };
-
-  function applyTweaks(t) {
-    document.body.setAttribute('data-theme', t.theme || 'light');
-    const a = ACCENT_MAP[t.accent] || ACCENT_MAP['#0087A8'];
-    document.body.style.setProperty('--accent', t.accent);
-    document.body.style.setProperty('--accent-dark', a.dark);
-    document.body.style.setProperty('--accent-tint', a.tint);
-    const fab = document.querySelector('.wa-fab');
-    if (fab) fab.style.display = t.showFloatingChat ? 'flex' : 'none';
-  }
-  applyTweaks(TWEAKS_DEFAULTS);
-
-  window.__TWEAKS_DEFAULTS = TWEAKS_DEFAULTS;
-  window.__applyTweaks = applyTweaks;
-</script>
-
-<!-- Tweaks panel (host-toggled) -->
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-<script type="text/babel">
-  const { useEffect } = React;
-  function App() {
-    const [t, setTweak] = useTweaks(window.__TWEAKS_DEFAULTS);
-    useEffect(() => { window.__applyTweaks(t); }, [t]);
-    return (
-      <TweaksPanel title="Tweaks">
-        <TweakSection title="Theme">
-          <TweakRadio
-            label="Surface"
-            value={t.theme}
-            onChange={v => setTweak('theme', v)}
-            options={[
-              { value: 'light', label: 'Light' },
-              { value: 'ink',   label: 'Ink' },
-              { value: 'teal',  label: 'Teal' }
-            ]}
-          />
-        </TweakSection>
-        <TweakSection title="Accent">
-          <TweakColor
-            label="Brand accent"
-            value={t.accent}
-            onChange={v => setTweak('accent', v)}
-            options={['#0087A8', '#1A1614', '#16957A', '#C0671F']}
-          />
-        </TweakSection>
-        <TweakSection title="Other">
-          <TweakToggle
-            label="Show WhatsApp chat bubble"
-            value={t.showFloatingChat}
-            onChange={v => setTweak('showFloatingChat', v)}
-          />
-        </TweakSection>
-      </TweaksPanel>
-    );
-  }
-  const root = document.createElement('div');
-  document.body.appendChild(root);
-  ReactDOM.createRoot(root).render(<App />);
-</script>
+<script src="assets/app.js"></script>
 
 </body>
 </html>

@@ -3,3 +3,6 @@ Thumbs.db
 *.log
 node_modules/
 .vercel
+
+# local preview helper (not for production)
+.preview-serve.py

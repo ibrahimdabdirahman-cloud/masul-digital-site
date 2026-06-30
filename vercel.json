@@ -2,6 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/pages/Falcon%20AI", "destination": "/falcon", "permanent": true },
+    { "source": "/pages/Falcon AI", "destination": "/falcon", "permanent": true },
+    { "source": "/pages/Data%20Desk", "destination": "/data-desk", "permanent": true },
+    { "source": "/pages/Data Desk", "destination": "/data-desk", "permanent": true },
+    { "source": "/pages/Services", "destination": "/ai-services", "permanent": true },
+    { "source": "/pages/Pricing", "destination": "/pricing", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
