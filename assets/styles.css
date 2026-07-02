@@ -1553,7 +1553,7 @@
     .cta-strip { grid-template-columns: 1fr; }
     .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     .fb-top { grid-template-columns: 1fr; gap: 40px; }
-    .fb-top > div:first-child > .eyebrow { margin-top: 140px; }
+    .fb-top > div:first-child > .eyebrow { margin-top: 165px; }
     .fb-stats { grid-template-columns: 1fr 1fr; }
     .fb-channels { grid-template-columns: 1fr 1fr; }
     .fb-flow { grid-template-columns: 1fr 1fr; gap: 22px 18px; }
