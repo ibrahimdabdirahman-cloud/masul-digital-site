@@ -83,7 +83,7 @@
         'WhatsApp: ' + (data.get('wa') || ''),
         'Priority: ' + (data.get('need') || '')
       ].join('\n');
-      var url = 'https://wa.me/447806949207?text=' + encodeURIComponent(message);
+      var url = 'https://wa.me/447375440623?text=' + encodeURIComponent(message);
       var opened = window.open(url, '_blank', 'noopener,noreferrer');
       if (!opened) window.location.href = url;
       leadForm.classList.add('sent');
