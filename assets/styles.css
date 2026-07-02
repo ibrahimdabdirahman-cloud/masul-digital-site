@@ -1553,11 +1553,13 @@
     .cta-strip { grid-template-columns: 1fr; }
     .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     .fb-top { grid-template-columns: 1fr; gap: 40px; }
+    .fb-top > div:first-child > .eyebrow { margin-top: 60px; }
     .fb-stats { grid-template-columns: 1fr 1fr; }
     .fb-channels { grid-template-columns: 1fr 1fr; }
     .fb-flow { grid-template-columns: 1fr 1fr; gap: 22px 18px; }
     .fb-plans { grid-template-columns: 1fr; }
     .dd-top { grid-template-columns: 1fr; gap: 44px; }
+    .dd-intro > .eyebrow { margin-top: 60px; }
     .dd-visual { min-height: 440px; margin-top: 8px; }
     .dd-chips { grid-template-columns: repeat(4, 1fr); }
     .dd-desks { display: flex; flex-direction: column; }
@@ -1567,6 +1569,7 @@
   @media (max-width: 540px) {
     .how-grid { grid-template-columns: 1fr; }
     .foot-grid { grid-template-columns: 1fr; }
+    .price-grid { margin-top: 30px; }
     .trust-strip-inner { gap: 16px; }
     .trust-types { gap: 14px 18px; }
     .hero-meta { gap: 18px; margin-top: 90px; }
