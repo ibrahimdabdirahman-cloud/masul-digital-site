@@ -338,7 +338,7 @@
 @media (max-width: 540px) {
   .ai-skills { grid-template-columns: 1fr; }
   .ai-sectors { grid-template-columns: 1fr; }
-  .ai-top { margin-top: 60px; }
+  .ai-top { margin-top: 100px; }
   .price-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .price-tab { white-space: nowrap; }
 }
