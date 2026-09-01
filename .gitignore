@@ -6,3 +6,7 @@ node_modules/
 
 # local preview helper (not for production)
 .preview-serve.py
+.gstack/
+
+# local editor/tooling config
+.claude/

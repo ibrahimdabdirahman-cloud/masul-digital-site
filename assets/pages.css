@@ -40,6 +40,25 @@
   position: relative; z-index: 2;
   width: 100%;
 }
+/* lifestyle photo layered behind the call-card */
+.hero-callbox .hero-photo {
+  position: absolute; z-index: 1;
+  top: -42px; right: -48px;
+  width: 216px; height: 296px;
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 26px 54px -22px rgba(0,0,0,0.42);
+}
+.hero-callbox .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-callbox .hero-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(150deg, rgba(0,135,168,0.34), rgba(6,20,26,0.42));
+}
+@media (max-width: 980px){
+  .hero-callbox .hero-photo { right: -12px; top: -34px; width: 168px; height: 224px; }
+}
+@media (max-width: 420px){
+  .hero-callbox .hero-photo { display: none; }
+}
 .hero-callbox .call-card .call-thread { max-height: none; }
 
 /* animated voice waveform in the call header */
@@ -342,3 +361,184 @@
   .price-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .price-tab { white-space: nowrap; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   FOUNDING CLIENT OFFER  — the £750 case (homepage + pricing)
+   Palette note: --accent on white is 3.78:1, so accent is only ever
+   used for large type (>=24px semibold) or as a fill behind #fff.
+   ═══════════════════════════════════════════════════════════════ */
+.offer { display: grid; gap: 20px; }
+.offer-head { text-align: center; max-width: 62ch; margin: 0 auto 8px; }
+.offer-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 7px 15px 7px 11px; border-radius: 999px;
+  background: var(--accent); color: #fff;
+  font-family: 'Poppins', sans-serif; font-weight: 600;
+  font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.offer-badge .slots { display: inline-flex; gap: 4px; }
+.offer-badge .slots i {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #fff; opacity: 0.9; display: block;
+}
+.offer-head h2 { font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.025em; line-height: 1.06; margin: 16px 0 12px; }
+.offer-head h2 .amt { color: var(--accent); }
+.offer-head p { color: var(--muted); font-size: 16.5px; line-height: 1.62; }
+
+/* --- the two-panel body --- */
+.offer-body { display: grid; grid-template-columns: 1.05fr 1fr; gap: 20px; align-items: start; }
+.offer-panel {
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--surface-2); padding: 26px 26px 24px;
+}
+.offer-panel > .op-head {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px;
+  letter-spacing: -0.01em; margin-bottom: 3px;
+}
+.offer-panel > .op-sub { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 20px; }
+
+/* --- 1. scale bars: market band vs our price --- */
+.scale { display: grid; gap: 16px; }
+.scale-row { display: grid; gap: 7px; }
+.scale-lab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.scale-lab .sl-n { font-size: 13px; font-weight: 500; color: var(--muted); }
+.scale-lab .sl-v { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; }
+.scale-track { position: relative; height: 34px; border-radius: 6px; background: var(--surface); overflow: hidden; }
+[data-theme="ink"] .scale-track { background: rgba(255,255,255,0.05); }
+.scale-fill { position: absolute; top: 0; bottom: 0; border-radius: 6px; }
+.scale-fill.band {
+  background: repeating-linear-gradient(135deg,
+    #C9CED6 0 6px, #E4E7EC 6px 12px);
+  border: 1px solid #94A0AE;
+}
+.scale-fill.band::after {
+  content: attr(data-tag); position: absolute; left: 12px; top: 50%;
+  transform: translateY(-50%); color: #3A424C;
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12.5px;
+  white-space: nowrap; text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+}
+[data-theme="ink"] .scale-fill.band::after { color: #E6EAEF; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+[data-theme="ink"] .scale-fill.band {
+  background: repeating-linear-gradient(135deg,
+    rgba(255,255,255,0.13) 0 7px, rgba(255,255,255,0.05) 7px 14px);
+  border-color: rgba(255,255,255,0.22);
+}
+.scale-fill.ours { background: var(--accent); }
+.scale-fill.ours::after {
+  content: attr(data-tag); position: absolute; right: 11px; top: 50%;
+  transform: translateY(-50%); color: #fff;
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px;
+  white-space: nowrap;
+}
+.scale-axis {
+  display: flex; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+  color: var(--muted); padding-top: 4px; border-top: 1px solid var(--line);
+}
+.scale-note { margin-top: 16px; font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+.scale-note b { color: var(--fg); font-weight: 600; }
+
+/* --- 2. value stack --- */
+.stack { display: grid; }
+.stack-row {
+  display: grid; grid-template-columns: 1fr auto auto;
+  align-items: baseline; gap: 10px;
+  padding: 11px 0; border-bottom: 1px solid var(--line);
+}
+.stack-row .sr-n { font-size: 14px; font-weight: 500; line-height: 1.35; }
+.stack-row .sr-n small { display: block; font-size: 11.5px; color: var(--muted); font-weight: 400; }
+.stack-row .sr-p {
+  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px;
+  color: var(--muted); text-decoration: line-through;
+  text-decoration-thickness: 1.5px; white-space: nowrap;
+}
+.stack-row .sr-f {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 9.5px;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--accent-dark); background: var(--accent-tint);
+  padding: 3px 7px; border-radius: 4px; white-space: nowrap;
+}
+[data-theme="ink"] .stack-row .sr-f { color: #6FD4EE; }
+.stack-row.base .sr-p { text-decoration: none; color: var(--fg); }
+.stack-row.base .sr-f { visibility: hidden; }
+.stack-total {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 12px; padding: 14px 0 16px; border-bottom: 1px solid var(--line);
+}
+.stack-total .st-n { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13.5px; }
+.stack-total .st-n small { display: block; font-weight: 400; font-size: 11.5px; color: var(--muted); font-family: 'Jost', sans-serif; }
+.stack-total .st-v { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px; color: var(--muted); text-decoration: line-through; text-decoration-thickness: 2px; }
+.stack-pay {
+  margin-top: 16px; background: var(--accent); border-radius: var(--r-md);
+  padding: 18px 22px; display: flex; justify-content: space-between;
+  align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.stack-pay .sp-n { color: #fff; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; }
+.stack-pay .sp-n small { display: block; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 12.5px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+.stack-pay .sp-v { color: #fff; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(30px, 5vw, 40px); letter-spacing: -0.03em; line-height: 1; }
+
+/* --- 3. the monthly they never pay --- */
+.versus { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.vs-card { border: 1px solid var(--line); border-radius: var(--r-md); padding: 18px 18px 16px; background: var(--surface); }
+.vs-card.ours { background: var(--accent); border-color: var(--accent); }
+.vs-card .vc-lab {
+  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10.5px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+}
+.vs-card.ours .vc-lab { color: rgba(255,255,255,0.8); }
+.vs-card .vc-v { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.03em; line-height: 1; }
+.vs-card.ours .vc-v { color: #fff; }
+.vs-card .vc-d { font-size: 12.5px; color: var(--muted); line-height: 1.5; margin-top: 9px; }
+.vs-card.ours .vc-d { color: rgba(255,255,255,0.9); }
+.commission {
+  margin-top: 14px; border-left: 3px solid var(--accent);
+  padding: 12px 0 12px 15px; font-size: 13.5px; line-height: 1.55; color: var(--muted);
+}
+.commission b { color: var(--fg); font-weight: 600; }
+
+/* --- 4. the three slots --- */
+.oslots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+.oslot {
+  border: 1.5px dashed var(--n-400); border-radius: var(--r-md);
+  padding: 16px 14px; text-align: center;
+}
+[data-theme="ink"] .oslot { border-color: rgba(255,255,255,0.24); }
+.oslot .sn {
+  font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 26px;
+  color: var(--accent); line-height: 1;
+}
+.oslot .sd { font-size: 11.5px; color: var(--muted); margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+
+.offer-foot {
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--surface); padding: 22px 26px;
+  display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.offer-foot .of-copy { max-width: 62ch; }
+.offer-foot .of-copy b { font-family: 'Poppins', sans-serif; font-weight: 600; }
+.offer-foot .of-copy p { font-size: 13.5px; color: var(--muted); line-height: 1.55; margin-top: 4px; }
+.offer-foot .of-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .offer-body { grid-template-columns: 1fr; }
+}
+/* the band is too narrow to hold its label once the track shrinks;
+   the "UK mid-tier studio  £1,500 – £3,000" line above already says it */
+@media (max-width: 700px) {
+  .scale-fill.band::after { content: none; }
+}
+@media (max-width: 540px) {
+  .offer-panel { padding: 22px 18px 20px; }
+  .versus { grid-template-columns: 1fr; }
+  .stack-row { grid-template-columns: 1fr auto; }
+  .stack-row .sr-f { grid-column: 2; justify-self: end; }
+  .stack-row .sr-p { grid-column: 2; justify-self: end; }
+  .offer-foot { flex-direction: column; align-items: flex-start; }
+}
+
+/* the "was £1,500" line under a price — must stay legible on the dark featured card */
+.price-card .was-note { margin: -8px 0 14px; }
+.price-card .was-note s { color: var(--muted); text-decoration-thickness: 1.5px; }
+.price-card .was-note a { color: var(--accent-dark); font-weight: 600; }
+.price-card.featured .was-note s { color: rgba(255,255,255,0.62); }
+.price-card.featured .was-note a { color: var(--teal-light); font-weight: 600; }
