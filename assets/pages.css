@@ -542,3 +542,110 @@
 .price-card .was-note a { color: var(--accent-dark); font-weight: 600; }
 .price-card.featured .was-note s { color: rgba(255,255,255,0.62); }
 .price-card.featured .was-note a { color: var(--teal-light); font-weight: 600; }
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO VISUAL — a phone showing the product we actually sell.
+   Replaces the Falcon call-card demo (that stays on /falcon).
+   Pure CSS: no new image, nothing to load, sharp at any density.
+   ═══════════════════════════════════════════════════════════════ */
+.hero-sitebox { position: relative; width: min(320px, 100%); }
+
+.sitephone {
+  position: relative; z-index: 2;
+  background: #17130F;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 38px;
+  padding: 11px;
+  box-shadow: 0 34px 70px -26px rgba(0,0,0,0.62), 0 0 0 1px rgba(0,0,0,0.04);
+}
+.sitephone-speaker {
+  position: absolute; z-index: 3; left: 50%; top: 19px;
+  transform: translateX(-50%);
+  width: 56px; height: 5px; border-radius: 3px;
+  background: rgba(255,255,255,0.16);
+}
+.sitephone-screen {
+  border-radius: 28px; overflow: hidden;
+  background: var(--white);
+  display: grid; grid-template-rows: auto 1fr;
+}
+
+/* the browser chrome — the client's own domain is part of Launch, so show it */
+.ps-bar {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 21px 12px 9px;   /* clears the speaker pill above it */
+  background: #F2F3F5; border-bottom: 1px solid #E3E5E9;
+}
+.ps-bar .lock { width: 11px; height: 11px; color: #6B7280; flex: none; }
+.ps-bar .url {
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+  color: #4B5563; letter-spacing: -0.01em;
+}
+
+.ps-site { background: var(--white); }
+.ps-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 14px; border-bottom: 1px solid #ECEDEF;
+}
+.ps-mark {
+  font-family: 'Poppins', sans-serif; font-weight: 700;
+  font-size: 13px; letter-spacing: -0.02em; color: #2A2724;
+}
+.ps-burger { display: grid; gap: 3px; }
+.ps-burger i { display: block; width: 15px; height: 1.6px; border-radius: 2px; background: #9AA0A6; }
+
+/* site hero band — warm café tones, deliberately NOT the site's own teal
+   so the phone reads as a client's site rather than more Masul chrome */
+.ps-hero {
+  position: relative;
+  padding: 20px 15px 17px;
+  background:
+    radial-gradient(120% 90% at 15% 0%, rgba(255,214,150,0.30), transparent 60%),
+    radial-gradient(90% 80% at 100% 100%, rgba(120,60,30,0.42), transparent 62%),
+    linear-gradient(155deg, #6A4630 0%, #4A2E1E 58%, #352014 100%);
+  display: grid; gap: 11px; justify-items: start;
+}
+.ps-open {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.16); color: #FFF6EA;
+  border-radius: 999px; padding: 3px 9px;
+  font-size: 9.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+}
+.ps-open i { width: 5px; height: 5px; border-radius: 50%; background: #4ADE80; display: block; }
+.ps-h {
+  font-family: 'Poppins', sans-serif; font-weight: 700;
+  font-size: 17px; line-height: 1.18; letter-spacing: -0.025em; color: #FFF8F0;
+}
+.ps-ctas { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 2px; }
+.pb {
+  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10px;
+  padding: 7px 11px; border-radius: 7px;
+  background: rgba(255,255,255,0.14); color: #FFF6EA;
+  border: 1px solid rgba(255,255,255,0.20);
+}
+.pb.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.ps-rev {
+  display: flex; align-items: center; gap: 7px;
+  padding: 10px 15px; border-bottom: 1px solid #ECEDEF;
+  font-size: 10.5px; color: var(--n-600);
+}
+.ps-rev b { color: #2A2724; font-weight: 700; }
+.ps-stars { color: #F5A623; font-size: 10px; letter-spacing: 0.5px; }
+
+.ps-menu { padding: 4px 15px 15px; }
+.pm {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 9px 0; border-bottom: 1px solid #F1F2F4;
+  font-size: 11px; color: #3C3A37;
+}
+.pm:last-child { border-bottom: 0; }
+.pm b { font-family: 'Poppins', sans-serif; font-weight: 600; color: #2A2724; }
+
+/* the second chip is a local-search proof point, not a call one */
+.hero-chip.found { right: -34px; bottom: -18px; transform: rotate(4deg); }
+.hero-chip.found .ic { background: rgba(46,204,113,0.14); color: #1f9d57; }
+
+@media (max-width: 980px) {
+  .hero-chip.found { right: -8px; bottom: -14px; }
+}
