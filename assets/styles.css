@@ -95,7 +95,6 @@
 
   /* ──────────── LAYOUT ──────────── */
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad-x); }
-  .row { display: flex; align-items: center; gap: 12px; }
 
   /* ──────────── NAV ──────────── */
   .nav {
@@ -284,198 +283,6 @@
     letter-spacing: 0.04em;
   }
 
-  /* HERO VISUAL — phone showing a QR menu */
-  .hero-visual { position: relative; min-height: 430px; display: flex; align-items: center; justify-content: center; }
-  .visual-bg-mark {
-    position: absolute; inset: -10% -15% -10% -5%;
-    color: var(--accent);
-    opacity: 0.06;
-    pointer-events: none;
-  }
-  [data-theme="teal"] .visual-bg-mark { opacity: 0.15; color: var(--white); }
-  .visual-bg-mark svg { width: 100%; height: 100%; }
-
-  .phone {
-    position: relative;
-    width: 256px;
-    height: 512px;
-    background: var(--ink);
-    border-radius: 34px;
-    padding: 9px;
-    box-shadow:
-      0 18px 40px -22px rgba(0,0,0,0.32),
-      inset 0 0 0 1px rgba(255,255,255,0.05);
-    z-index: 2;
-  }
-  .phone::before {
-    content: '';
-    position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
-    width: 90px; height: 24px;
-    background: #000; border-radius: 999px;
-    z-index: 3;
-  }
-  .phone-screen {
-    width: 100%; height: 100%;
-    background: var(--white);
-    border-radius: 30px;
-    overflow: hidden;
-    position: relative;
-    display: flex; flex-direction: column;
-  }
-  .phone-header {
-    padding: 48px 22px 18px;
-    background: linear-gradient(180deg, var(--teal) 0%, var(--teal-dark) 100%);
-    color: var(--white);
-  }
-  .phone-header .biz {
-    font-family: 'Poppins', sans-serif; font-weight: 700;
-    font-size: 18px; letter-spacing: -0.01em;
-  }
-  .phone-header .biz-sub {
-    font-size: 11px; opacity: 0.85; letter-spacing: 0.06em; text-transform: uppercase;
-    margin-top: 2px;
-  }
-  .phone-header .biz-meta {
-    display: flex; gap: 12px; margin-top: 12px;
-    font-size: 11px; opacity: 0.9;
-  }
-  .phone-tabs {
-    display: flex; gap: 18px;
-    padding: 14px 22px 10px;
-    border-bottom: 1px solid var(--n-100);
-    overflow-x: auto;
-    flex-shrink: 0;
-  }
-  .phone-tab {
-    font-size: 12px; font-weight: 500;
-    color: var(--n-400);
-    padding-bottom: 8px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .phone-tab.active {
-    color: var(--ink); font-weight: 600;
-    border-bottom: 2px solid var(--teal);
-    margin-bottom: -1px;
-  }
-  .phone-menu { padding: 16px 22px; color: var(--ink); flex: 1; overflow-y: auto; }
-  .menu-item {
-    display: flex; justify-content: space-between; align-items: baseline;
-    gap: 12px;
-    padding: 11px 0;
-    border-bottom: 1px dashed var(--n-200);
-  }
-  .menu-item:last-child { border: none; }
-  .menu-item .name {
-    font-family: 'Poppins', sans-serif; font-weight: 600;
-    font-size: 13px;
-  }
-  .menu-item .desc {
-    font-size: 11px; color: var(--n-600); margin-top: 2px; line-height: 1.4;
-  }
-  .menu-item .price {
-    font-family: 'Poppins', sans-serif; font-weight: 700;
-    color: var(--teal); font-size: 13px;
-  }
-
-  /* Booking demo inside phone */
-  .book-body { padding: 12px 20px 10px; color: var(--ink); flex: 1; overflow: hidden; }
-  .book-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--n-400); margin: 2px 0 7px;
-  }
-  .book-label:not(:first-child) { margin-top: 13px; }
-  .book-svc {
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    padding: 10px 12px; margin-bottom: 6px;
-    border: 1px solid var(--n-200); border-radius: 11px;
-    background: var(--white);
-  }
-  .book-svc .s-name { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12.5px; color: var(--ink); }
-  .book-svc .s-meta { font-size: 10.5px; color: var(--n-600); margin-top: 1px; }
-  .book-svc .s-price { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12.5px; color: var(--n-600); }
-  .book-svc.sel {
-    border-color: var(--teal); background: var(--teal-light);
-  }
-  .book-svc.sel .s-price { color: var(--teal-dark); }
-  .book-svc .tick {
-    width: 18px; height: 18px; border-radius: 50%; background: var(--teal);
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .book-svc .tick svg { width: 10px; height: 10px; }
-  .book-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .slot {
-    text-align: center; padding: 8px 0; border-radius: 9px;
-    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px;
-    border: 1px solid var(--n-200); color: var(--ink); background: var(--white);
-  }
-  .slot.active { background: var(--teal); color: var(--white); border-color: var(--teal); }
-  .slot.gone { color: var(--n-400); text-decoration: line-through; background: var(--n-50); }
-  .book-cta {
-    width: 100%; margin-top: 13px; padding: 11px;
-    background: var(--teal); color: var(--white);
-    border-radius: 11px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
-  .book-note {
-    display: flex; align-items: center; gap: 7px; justify-content: center;
-    margin-top: 10px; font-size: 10.5px; color: var(--n-600);
-  }
-  .book-note svg { width: 13px; height: 13px; color: var(--teal); flex-shrink: 0; }
-
-  /* QR card floating beside phone */
-  /* QR card hidden for a cleaner, minimalist hero */
-  .qr-card {
-    display: none;
-    position: absolute;
-    right: -10px; bottom: 30px;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    border-radius: var(--r-md);
-    padding: 16px;
-    width: 180px;
-    z-index: 3;
-    box-shadow: 0 18px 40px -12px rgba(0,0,0,0.18);
-    transform: rotate(4deg);
-  }
-  .qr-card .qr {
-    width: 100%; aspect-ratio: 1; background: var(--white);
-    border-radius: 10px; padding: 8px;
-    border: 1px solid var(--n-100);
-  }
-  .qr-card .qr svg { width: 100%; height: 100%; }
-  .qr-card .cap {
-    font-size: 10px; color: var(--muted);
-    text-align: center; margin-top: 8px;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    font-family: 'Poppins', sans-serif; font-weight: 600;
-  }
-  .qr-card .cap b { color: var(--accent); display: block; margin-bottom: 2px; font-size: 12px; letter-spacing: 0.04em; text-transform: none;}
-
-  /* Review chip floating */
-  .review-chip {
-    position: absolute;
-    left: -28px; top: 60px;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 10px 16px 10px 12px;
-    display: flex; align-items: center; gap: 10px;
-    z-index: 3;
-    box-shadow: 0 10px 24px -10px rgba(0,0,0,0.12);
-    transform: rotate(-3deg);
-  }
-  .review-chip .av {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--accent-tint);
-    color: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px;
-  }
-  .review-chip .txt { font-size: 11px; color: var(--fg); line-height: 1.3; }
-  .review-chip .txt b { font-family: 'Poppins', sans-serif; font-weight: 600; }
-  .review-chip .stars { color: #F5A623; font-size: 10px; letter-spacing: 1px; }
-
   /* ──────────── TRUST STRIP ──────────── */
   .trust-strip {
     border-top: 1px solid var(--line);
@@ -541,9 +348,6 @@
     display: flex; flex-direction: column; gap: 12px;
   }
   .service:hover { border-color: var(--accent); transform: translateY(-3px); }
-  .service.s-1, .service.s-3 { grid-column: span 5; }
-  .service.s-2, .service.s-4 { grid-column: span 7; }
-  .service.s-5 { grid-column: span 12; }
 
   .service .svc-num {
     font-family: 'JetBrains Mono', monospace;
@@ -576,20 +380,6 @@
   .service .svc-foot {
     display: flex; justify-content: space-between; align-items: end;
     margin-top: auto; padding-top: 18px;
-  }
-  .service .svc-price {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .service .svc-price .from {
-    display: block;
-    font-size: 10px; color: var(--muted);
-    letter-spacing: 0.16em; text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 6px;
   }
   .service .svc-icon {
     position: absolute;
@@ -1185,57 +975,6 @@
   .fb-step h4 { font-size: 15px; font-weight: 600; margin: 10px 0 6px; }
   .fb-step p { font-size: 12.5px; color: #A8A29C; line-height: 1.5; }
 
-  /* Falcon plans */
-  .fb-plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .fb-plan {
-    background: #221E1C;
-    border: 1px solid rgba(255,255,255,0.09);
-    border-radius: var(--r-lg);
-    padding: 24px;
-    display: flex; flex-direction: column;
-    position: relative;
-  }
-  .fb-plan.feat {
-    background: linear-gradient(180deg, #00768f 0%, #00667d 100%);
-    border-color: rgba(0,196,232,0.5);
-    box-shadow: 0 0 0 1px rgba(0,196,232,0.4), 0 24px 50px -20px rgba(0,135,168,0.5);
-  }
-  .fb-plan .pbadge {
-    position: absolute; top: -10px; right: 22px;
-    background: #00C4E8; color: var(--ink);
-    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 10px;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    padding: 5px 12px; border-radius: 999px;
-  }
-  .fb-plan h4 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
-  .fb-plan .pdesc { font-size: 12.5px; color: #A8A29C; margin-bottom: 20px; min-height: 34px; line-height: 1.45; }
-  .fb-plan.feat .pdesc { color: rgba(255,255,255,0.82); }
-  .fb-plan .pamt {
-    display: flex; align-items: baseline; gap: 4px;
-    padding-bottom: 20px; margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  .fb-plan .pamt .cur { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 20px; color: #A8A29C; }
-  .fb-plan .pamt .num { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 38px; line-height: 1; letter-spacing: -0.02em; color: var(--white); }
-  .fb-plan .pamt .per { font-size: 13px; color: #8E8983; margin-left: 2px; }
-  .fb-plan.feat .pamt .cur, .fb-plan.feat .pamt .per { color: rgba(255,255,255,0.75); }
-  .fb-plan ul { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; margin-bottom: 24px; }
-  .fb-plan li { font-size: 13px; color: #D6D2CD; display: flex; gap: 9px; align-items: flex-start; line-height: 1.45; }
-  .fb-plan.feat li { color: rgba(255,255,255,0.92); }
-  .fb-plan li::before {
-    content: ''; flex-shrink: 0; width: 15px; height: 15px; margin-top: 2px;
-    border-radius: 50%; background: rgba(0,196,232,0.18);
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300C4E8' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'></polyline></svg>");
-    background-size: 9px; background-position: center; background-repeat: no-repeat;
-  }
-  .fb-plan.feat li::before {
-    background-color: rgba(255,255,255,0.2);
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'></polyline></svg>");
-  }
-  .fb-plan .btn-ghost { color: #F4F1EE; border-color: rgba(255,255,255,0.22); justify-content: center; }
-  .fb-plan .btn-ghost:hover { border-color: #00C4E8; color: #00C4E8; background: transparent; }
-  .fb-plan.feat .btn-primary { background: var(--white); color: var(--teal-dark); }
-  .fb-plan.feat .btn-primary:hover { background: var(--teal-light); }
   .fb-note { margin-top: 26px; font-size: 13px; color: #8E8983; text-align: center; }
   .fb-note b { color: #BDB8B2; font-weight: 600; }
 
@@ -1591,9 +1330,7 @@
     .nav-links { display: none; }
     .nav-burger { display: block; }
     .hero-grid { grid-template-columns: 1fr; }
-    .hero-visual { min-height: 540px; margin-top: 32px; }
     .services { display: flex; flex-direction: column; }
-    .service.s-1, .service.s-2, .service.s-3, .service.s-4, .service.s-5 { grid-column: auto; }
     .how-grid { grid-template-columns: 1fr 1fr; }
     .showcase-grid, .price-grid { grid-template-columns: 1fr; }
     .faq-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -1604,7 +1341,6 @@
     .fb-stats { grid-template-columns: 1fr 1fr; }
     .fb-channels { grid-template-columns: 1fr 1fr; }
     .fb-flow { grid-template-columns: 1fr 1fr; gap: 22px 18px; }
-    .fb-plans { grid-template-columns: 1fr; }
     .dd-top { grid-template-columns: 1fr; gap: 44px; }
     .dd-intro > .eyebrow { margin-top: 100px; }
     .dd-visual { min-height: 440px; margin-top: 8px; }
